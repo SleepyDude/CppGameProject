@@ -1,4 +1,6 @@
-This is template C++11 project.
+This is C++11 course project provided by mail.ru group.
 
-#Compilation
-To compile on Windows (MinGW) apply patch gtest_windows_mingw_patch.diff to 3party/googletest.
+Participants of project:
+  
+  Evgeny Kolodin  https://github.com/SleepyDude
+  Alina Merkulova https://github.com/enfantter
