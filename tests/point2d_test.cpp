@@ -60,6 +60,7 @@ TEST(point2d_test, test_calculus)
   EXPECT_EQ(p1 - p2, Point2D(0.2f, 0.4f));
   EXPECT_EQ(p1 * 2.0f, Point2D(2.4f, 4.8f));
   EXPECT_EQ(p1 / 2.0f, Point2D(0.6f, 1.2f));
+  EXPECT_EQ(p1 / 0.0f, Point2D(0.0f, 0.0f));
 
   p1 += { 1.2f, 2.4f };
   EXPECT_EQ(p1, Point2D(2.4f, 4.8f));
@@ -72,6 +73,8 @@ TEST(point2d_test, test_calculus)
 
   p1 /= 2.0f;
   EXPECT_EQ(p1, Point2D(1.2f, 2.4f));
+  p1 /= 0.0f;
+  EXPECT_EQ(p1, Point2D(0.0f, 0.0f));
 }
 
 TEST(point2d_test, test_square_brackets)
@@ -98,4 +101,11 @@ TEST(point2d_test, test_output)
   std::stringstream s;
   s << Point2D(1.2f, 0.2f);
   EXPECT_EQ(s.str(), "Point2D {1.2, 0.2}");
+}
+
+TEST(point2d_test, test_strict_comparison)
+{
+  Point2D p1 = { 1.4f, 5.2f }, p2 = { 2.1f, 9.8f };
+  EXPECT_EQ(p1 <<= p2, true);
+  EXPECT_EQ(p2 <<= p1, false);
 }
