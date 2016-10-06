@@ -23,6 +23,7 @@ public:
   void SetMin(Point2D const &);
   void SetMax(Point2D const &);
   Box2D & operator = (Box2D const &);
+
 private:
-  Point2D m_p1 = { 0.0f, 0.0f }, m_p2 = { 1.0f, 1.0f };
+  Point2D m_boxMin = { 0.0f, 0.0f }, m_boxMax = { 1.0f, 1.0f };
 };
