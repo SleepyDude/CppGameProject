@@ -6,14 +6,14 @@ TEST(box2d_test, test_construction)
   // Тест на создание объекта по умолчанию.
   Box2D r1;
   Point2D pt1_1 = { 0.0f, 0.0f }, pt1_2 = { 1.0f, 1.0f };
-  EXPECT_EQ(r1.p1(),pt1_1);
-  EXPECT_EQ(r1.p2(),pt1_2);
+  EXPECT_EQ(r1.boxMin(),pt1_1);
+  EXPECT_EQ(r1.boxMax(),pt1_2);
 
   // Тест на создание объекта с параметрами.
   Point2D pt2_1 = { 1.5f, 2.2f }, pt2_2 = { 11.3f, 5.7f };
   Box2D r2(pt2_1,pt2_2);
-  EXPECT_EQ(r2.p1(), pt2_1);
-  EXPECT_EQ(r2.p2(), pt2_2);
+  EXPECT_EQ(r2.boxMin(), pt2_1);
+  EXPECT_EQ(r2.boxMax(), pt2_2);
 
   // Тест на создание копии объекта.
   Box2D r3(r2);
@@ -25,8 +25,8 @@ TEST(box2d_test, test_4th_constructor)
   //Тест на создание объекта по 4м числам x1 y1 x2 y2
   Box2D r4(1.25f,6.5f,2.3f,7.2f);
   Point2D pt4_1 = { 1.25f, 6.5f }, pt4_2 = { 2.3f, 7.2f };
-  EXPECT_EQ(r4.p1(), pt4_1);
-  EXPECT_EQ(r4.p2(), pt4_2);
+  EXPECT_EQ(r4.boxMin(), pt4_1);
+  EXPECT_EQ(r4.boxMax(), pt4_2);
 }
 
 

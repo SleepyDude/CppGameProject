@@ -1,8 +1,8 @@
 #include "box2d.h"
 
 
-Box2D::Box2D(Point2D const & p1, Point2D const & p2)
-  : m_boxMin(p1), m_boxMax(p2)
+Box2D::Box2D(Point2D const & boxMin, Point2D const & boxMax)
+  : m_boxMin(boxMin), m_boxMax(boxMax)
 {}
 Box2D::Box2D(Box2D const & obj)
   : m_boxMin(obj.m_boxMin), m_boxMax(obj.m_boxMax)
@@ -11,8 +11,8 @@ Box2D::Box2D(float f1, float f2, float f3, float f4)
   : m_boxMin(f1, f2), m_boxMax(f3, f4)
 {}
 
-Point2D Box2D::p1() { return m_boxMin; }
-Point2D Box2D::p2() { return m_boxMax; }
+Point2D Box2D::boxMin() { return m_boxMin; }
+Point2D Box2D::boxMax() { return m_boxMax; }
 
 void Box2D::SetMin(Point2D const & point)
 {
