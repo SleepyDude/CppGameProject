@@ -84,7 +84,7 @@ bool Ray2D::Intersect(Point2D a, Point2D b)
 // Оператор проверки пересечения луча и бокса
 bool Ray2D::operator % (Box2D & obj)
 {
-  Point2D p1 = obj.p1(), p2 = { obj.p1().x(), obj.p2().y() },
-          p3 = obj.p2(), p4 = { obj.p2().x(), obj.p1().y() };
+  Point2D p1 = obj.boxMin(), p2 = { obj.boxMin().x(), obj.boxMax().y() },
+          p3 = obj.boxMax(), p4 = { obj.boxMax().x(), obj.boxMin().y() };
   return Intersect(p1,p2) || Intersect(p2,p3) || Intersect(p3,p4) || Intersect(p4,p1);
 }
