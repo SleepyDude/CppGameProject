@@ -24,7 +24,7 @@ public:
     return *this;
   }
 
-  float Determinant()
+  float Determinant() const
   {
     return m_m00*m_m11-m_m01*m_m10;
   }

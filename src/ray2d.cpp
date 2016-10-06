@@ -20,7 +20,7 @@ bool Ray2D::operator == (Ray2D const & obj) const
 }
 
 Point2D & Ray2D::origin() { return m_origin; }
-Point2D & Ray2D::direction() { return m_direction; }
+Point2D const & Ray2D::direction() { return m_direction; }
 
 // Оператор присваивания.
 Ray2D & Ray2D::operator = (Ray2D const & obj)
@@ -34,7 +34,7 @@ Ray2D & Ray2D::operator = (Ray2D const & obj)
 // Оператор логического неравенства.
 bool Ray2D::operator != (Ray2D const & obj) const
 {
-  return !Ray2D::operator==(obj);
+  return !Ray2D::operator == (obj);
 }
 
 // Переопределение оператора [].
@@ -63,7 +63,7 @@ bool Ray2D::Intersect(Point2D a, Point2D b)
 
   float D = m.Determinant();
 
-  if (D==0) { return false; }
+  if (D == 0) { return false; }
 
   m1 = m;
   m2 = m;
