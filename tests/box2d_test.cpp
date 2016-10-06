@@ -81,6 +81,3 @@ TEST(box2d_test, test_intersection)
   EXPECT_EQ(r8_3 % r8_4,false);
   EXPECT_EQ(r8_2 % r8_4,true);
 }
-
-
-

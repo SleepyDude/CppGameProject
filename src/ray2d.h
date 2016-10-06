@@ -19,7 +19,8 @@ public:
   Ray2D(float,float,float,float);
 
   // Методы возврата значений точки старта и точки, определяющей направляющий вектор
-  Point2D & origin();  Point2D & direction();
+  Point2D & origin();
+  Point2D & direction();
 
   // Перегрузка логического равенства
   bool operator == (Ray2D const &) const;
