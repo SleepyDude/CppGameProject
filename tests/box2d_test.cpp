@@ -103,5 +103,3 @@ TEST(box2d_test, test_Min_and_Max)
   r9_3.SetMax(pt9_1);
   EXPECT_EQ(r9_3,r9_5);
 }
-
-
