@@ -82,5 +82,26 @@ TEST(box2d_test, test_intersection)
   EXPECT_EQ(r8_2 % r8_4,true);
 }
 
+TEST(box2d_test, test_Min_and_Max)
+{
+  // Тест на методы переопределения boxMin и boxMax
+  Box2D r9_1 = { 1.43f, 5.65f, 7.13f, 12.2f };
+  Box2D r9_2(r9_1);
+  Box2D r9_3(r9_1);
+  Box2D r9_4 = { 5.16f, 9.41f, 7.13f, 12.2f };
+  Box2D r9_5 = { 1.43f, 5.65f, 5.16f, 9.41f };
+  Point2D pt9_1 = { 5.16f, 9.41f },
+          pt9_2 = { 0.13f, 7.23f },
+          pt9_3 = { 8.1f, 7.23f };
+
+  r9_1.SetMin(pt9_1);
+  EXPECT_EQ(r9_1,r9_4);
+  r9_2.SetMin(pt9_3);
+  EXPECT_EQ(r9_2,r9_3);
+  r9_2.SetMax(pt9_2);
+  EXPECT_EQ(r9_2,r9_3);
+  r9_3.SetMax(pt9_1);
+  EXPECT_EQ(r9_3,r9_5);
+}
 
 
