@@ -31,7 +31,7 @@ bool Box2D::operator == (Box2D const & obj) const
 // Оператор присваивания.
 Box2D & Box2D::operator = (Box2D const & obj)
 {
-  if (this == & obj) return *this;
+  if (this == &obj) return *this;
   m_boxMin = obj.m_boxMin;
   m_boxMax = obj.m_boxMax;
   return *this;

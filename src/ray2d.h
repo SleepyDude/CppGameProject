@@ -30,7 +30,7 @@ public:
   // Перегрузка квадратных скобок
   Point2D operator [] (unsigned int index) const;
   // Перегрузка оператора присваивания
-  Ray2D & operator = (Ray2D const & obj);
+  Ray2D & operator = (Ray2D const &obj);
   // Метод, определяющий пересечение с отрезком
   bool Intersect(Point2D a, Point2D b);
   // Определение оператора пересечения с прямоугольником
