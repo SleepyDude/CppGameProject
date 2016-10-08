@@ -12,6 +12,11 @@ Ray2D::Ray2D(float f1, float f2, float f3, float f4)
   : m_origin(f1, f2), m_direction(f3, f4)
 {}
 
+Ray2D::Ray2D(Ray2D && obj)
+{
+std::swap(m_origin, obj.m_origin);
+std::swap(m_direction, obj.m_direction);
+}
 
 // Оператор логического равенства.
 bool Ray2D::operator == (Ray2D const & obj) const
