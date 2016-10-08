@@ -10,16 +10,24 @@ Box2D::Box2D(float f1, float f2, float f3, float f4)
   : m_boxMin(f1, f2), m_boxMax(f3, f4)
 {}
 
+Box2D::Box2D(Box2D && obj)
+{
+std::swap(m_boxMax, obj.m_boxMax);
+std::swap(m_boxMin, obj.m_boxMin);
+}
+
 Point2D Box2D::boxMin() { return m_boxMin; }
 Point2D Box2D::boxMax() { return m_boxMax; }
 
-void Box2D::SetMin(Point2D const & point)
+Box2D Box2D::SetMin(Point2D const & point)
 {
   if (point <<= m_boxMax) m_boxMin = point;
+  return *this;
 }
-void Box2D::SetMax(Point2D const & point)
+Box2D Box2D::SetMax(Point2D const & point)
 {
   if (m_boxMin <<= point) m_boxMax = point;
+  return *this;
 }
 
 // Оператор логического равенства.
@@ -35,6 +43,13 @@ Box2D & Box2D::operator = (Box2D const & obj)
   m_boxMin = obj.m_boxMin;
   m_boxMax = obj.m_boxMax;
   return *this;
+}
+
+// Метод смещения бокса
+Box2D Box2D::Shift(Point2D const & obj)
+{
+  m_boxMin += obj;
+  m_boxMax += obj;
 }
 
 // Оператор логического неравенства.

@@ -103,3 +103,24 @@ TEST(box2d_test, test_Min_and_Max)
   r9_3.SetMax(pt9_1);
   EXPECT_EQ(r9_3,r9_5);
 }
+
+TEST(box2d_test, test_shift)
+{
+  // Тест на метод смещения
+  Box2D r10_1 = { 3.33f, 4.12f, 6.41f, 8.14f };
+  Point2D pt10_1 = { 2.0, 3.0 };
+  Box2D r10_2 = { 5.33f, 7.12f, 8.41f, 11.14f };
+  r10_1.Shift(pt10_1);
+  EXPECT_EQ(r10_1,r10_2);
+}
+
+TEST(box2d_test, test_move_semantic)
+{
+  // Тест на конструктор перемещения
+  Box2D r11_1 = { 3.33f, 4.12f, 6.41f, 8.14f };
+  Box2D r11_2;
+  Box2D r11_3(std::move(r11_1));
+  Box2D r11_4 = { 3.33f, 4.12f, 6.41f, 8.14f };
+  EXPECT_EQ(r11_3,r11_4);
+  EXPECT_EQ(r11_2,r11_1);
+}
