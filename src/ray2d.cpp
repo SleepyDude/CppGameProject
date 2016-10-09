@@ -24,8 +24,8 @@ bool Ray2D::operator == (Ray2D const & obj) const
   return (m_origin == obj.m_origin) && (m_direction == obj.m_direction);
 }
 
-Point2D & Ray2D::origin() { return m_origin; }
-Point2D const & Ray2D::direction() { return m_direction; }
+Point2D & Ray2D::origin() const { return m_origin; }
+Point2D const & Ray2D::direction() const { return m_direction; }
 
 // Оператор присваивания.
 Ray2D & Ray2D::operator = (Ray2D const & obj)

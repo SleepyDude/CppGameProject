@@ -22,8 +22,8 @@ public:
   Ray2D(Ray2D && obj);
 
   // Методы возврата значений точки старта и точки, определяющей направляющий вектор
-  Point2D & origin();
-  Point2D const & direction();
+  Point2D & origin() const;
+  Point2D const & direction() const;
 
   // Перегрузка логического равенства
   bool operator == (Ray2D const & obj) const;

@@ -17,11 +17,11 @@ public:
   Box2D Shift(Point2D const & obj);
   bool operator == (Box2D const & obj) const;
   bool operator != (Box2D const & obj) const;
-  Point2D operator [] (unsigned int index) const;
+  Point2D operator [] (unsigned int const & index) const;
   bool operator % (Box2D const & obj);
 
-  Point2D boxMin();
-  Point2D boxMax();
+  Point2D boxMin() const;
+  Point2D boxMax() const;
   Box2D SetMin(Point2D const & obj);
   Box2D SetMax(Point2D const & obj);
   Box2D & operator = (Box2D const & obj);
