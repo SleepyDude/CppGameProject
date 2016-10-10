@@ -88,3 +88,26 @@ TEST(ray2d_test, test_Intersect_box2d)
   EXPECT_EQ( r9_1 % b9_5 ,false);
   EXPECT_EQ( r9_1 % b9_6 ,true);
 }
+
+TEST(ray2d_test, test_move_constructor)
+{
+  // Тест на конструктор перемещения
+  Ray2D r10_1 = { 3.33f, 4.12f, 6.41f, 8.14f };
+  Ray2D r10_2;
+  Ray2D r10_3(std::move(r10_1));
+  Ray2D r10_4 = { 3.33f, 4.12f, 6.41f, 8.14f };
+  EXPECT_EQ(r10_3,r10_4);
+  EXPECT_EQ(r10_2,r10_1);
+}
+
+TEST(ray2d_test, test_move_operator)
+{
+  // Тест на оператор перемещения
+  Ray2D r12_1 = { 3.33f, 4.12f, 6.41f, 8.14f };
+  Ray2D r12_2 = { 6.11f, 7.21f, 7.3f, 10.19f };
+  r12_2 = (std::move(r12_1));
+  Ray2D r12_3 = { 3.33f, 4.12f, 6.41f, 8.14f };
+  Ray2D r12_4 = { 6.11f, 7.21f, 7.3f, 10.19f };
+  EXPECT_EQ(r12_2,r12_3);
+  EXPECT_EQ(r12_1,r12_4);
+}
