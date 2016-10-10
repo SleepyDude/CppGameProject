@@ -90,18 +90,22 @@ TEST(box2d_test, test_Min_and_Max)
   Box2D r9_3(r9_1);
   Box2D r9_4 = { 5.16f, 9.41f, 7.13f, 12.2f };
   Box2D r9_5 = { 1.43f, 5.65f, 5.16f, 9.41f };
+  Box2D r9_6 = { 7.13f, 7.23f, 8.1f, 12.2f };
+  Box2D r9_7 = { 0.13f, 5.65f, 1.43f, 7.23f };
+  Box2D r9_8(r9_1);
   Point2D pt9_1 = { 5.16f, 9.41f },
           pt9_2 = { 0.13f, 7.23f },
           pt9_3 = { 8.1f, 7.23f };
 
+
   r9_1.SetMin(pt9_1);
   EXPECT_EQ(r9_1,r9_4);
   r9_2.SetMin(pt9_3);
-  EXPECT_EQ(r9_2,r9_3);
-  r9_2.SetMax(pt9_2);
-  EXPECT_EQ(r9_2,r9_3);
-  r9_3.SetMax(pt9_1);
-  EXPECT_EQ(r9_3,r9_5);
+  EXPECT_EQ(r9_2,r9_6);
+  r9_3.SetMax(pt9_2);
+  EXPECT_EQ(r9_3,r9_7);
+  r9_8.SetMax(pt9_1);
+  EXPECT_EQ(r9_8,r9_5);
 }
 
 TEST(box2d_test, test_shift)
@@ -114,7 +118,7 @@ TEST(box2d_test, test_shift)
   EXPECT_EQ(r10_1,r10_2);
 }
 
-TEST(box2d_test, test_move_semantic)
+TEST(box2d_test, test_move_constructor)
 {
   // Тест на конструктор перемещения
   Box2D r11_1 = { 3.33f, 4.12f, 6.41f, 8.14f };
@@ -123,4 +127,16 @@ TEST(box2d_test, test_move_semantic)
   Box2D r11_4 = { 3.33f, 4.12f, 6.41f, 8.14f };
   EXPECT_EQ(r11_3,r11_4);
   EXPECT_EQ(r11_2,r11_1);
+}
+
+TEST(box2d_test, test_move_operator)
+{
+  // Тест на оператор перемещения
+  Box2D r12_1 = { 3.33f, 4.12f, 6.41f, 8.14f };
+  Box2D r12_2 = { 6.11f, 7.21f, 7.3f, 10.19f };
+  r12_2 = (std::move(r12_1));
+  Box2D r12_3 = { 3.33f, 4.12f, 6.41f, 8.14f };
+  Box2D r12_4 = { 6.11f, 7.21f, 7.3f, 10.19f };
+  EXPECT_EQ(r12_2,r12_3);
+  EXPECT_EQ(r12_1,r12_4);
 }

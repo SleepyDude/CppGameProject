@@ -19,6 +19,7 @@ public:
   bool operator != (Box2D const & obj) const;
   Point2D operator [] (unsigned int const & index) const;
   bool operator % (Box2D const & obj);
+  Box2D & operator = (Box2D && obj);
 
   Point2D boxMin() const;
   Point2D boxMax() const;
@@ -28,4 +29,5 @@ public:
 
 private:
   Point2D m_boxMin = { 0.0f, 0.0f }, m_boxMax = { 1.0f, 1.0f };
+  Box2D Validate(Point2D const & p1, Point2D const & p2);
 };

@@ -109,3 +109,26 @@ TEST(point2d_test, test_strict_comparison)
   EXPECT_EQ(p1 <<= p2, true);
   EXPECT_EQ(p2 <<= p1, false);
 }
+
+TEST(point2d_test, test_move_constructor)
+{
+  // Тест на конструктор перемещения
+  Point2D p1 = { 3.33f, 4.12f };
+  Point2D p2;
+  Point2D p3(std::move(p1));
+  Point2D p4 = { 3.33f, 4.12f };
+  EXPECT_EQ(p3,p4);
+  EXPECT_EQ(p2,p1);
+}
+
+TEST(point2d_test, test_move_operator)
+{
+  // Тест на оператор перемещения
+  Point2D p1 = { 3.33f, 4.12f };
+  Point2D p2 = { 6.11f, 7.21f };
+  p2 = (std::move(p1));
+  Point2D p3 = { 3.33f, 4.12f };
+  Point2D p4 = { 6.11f, 7.21f };
+  EXPECT_EQ(p2,p3);
+  EXPECT_EQ(p1,p4);
+}

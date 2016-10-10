@@ -22,7 +22,7 @@ public:
   Ray2D(Ray2D && obj);
 
   // Методы возврата значений точки старта и точки, определяющей направляющий вектор
-  Point2D & origin() const;
+  Point2D const & origin() const;
   Point2D const & direction() const;
 
   // Перегрузка логического равенства
@@ -32,11 +32,13 @@ public:
   // Перегрузка квадратных скобок
   Point2D operator [] (unsigned int index) const;
   // Перегрузка оператора присваивания
-  Ray2D & operator = (Ray2D const &obj);
+  Ray2D & operator = (Ray2D const & obj);
   // Метод, определяющий пересечение с отрезком
   bool Intersect(Point2D a, Point2D b);
   // Определение оператора пересечения с прямоугольником
   bool operator % (Box2D & obj);
+  // Оператор перемещения
+  Ray2D & operator = (Ray2D && obj);
 
 private:
   Point2D m_origin = { 0.0f, 0.0f }, m_direction = { 0.0f, 1.0f };

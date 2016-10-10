@@ -12,8 +12,8 @@ Box2D::Box2D(float f1, float f2, float f3, float f4)
 
 Box2D::Box2D(Box2D && obj)
 {
-std::swap(m_boxMax, obj.m_boxMax);
-std::swap(m_boxMin, obj.m_boxMin);
+  std::swap(m_boxMax, obj.m_boxMax);
+  std::swap(m_boxMin, obj.m_boxMin);
 }
 
 Point2D Box2D::boxMin() const { return m_boxMin; }
@@ -21,12 +21,29 @@ Point2D Box2D::boxMax() const { return m_boxMax; }
 
 Box2D Box2D::SetMin(Point2D const & point)
 {
-  if (point <<= m_boxMax) m_boxMin = point;
+  if (point <<= m_boxMax)
+  {
+    m_boxMin = point;
+  }
+  else
+  {
+    Point2D pt = m_boxMax;
+    *this = Validate(point, pt);
+  }
   return *this;
 }
+
 Box2D Box2D::SetMax(Point2D const & point)
 {
-  if (m_boxMin <<= point) m_boxMax = point;
+  if (m_boxMin <<= point)
+  {
+    m_boxMax = point;
+  }
+  else
+  {
+    Point2D pt = m_boxMin;
+    *this = Validate(point, pt);
+  }
   return *this;
 }
 
@@ -43,6 +60,13 @@ Box2D & Box2D::operator = (Box2D const & obj)
   m_boxMin = obj.m_boxMin;
   m_boxMax = obj.m_boxMax;
   return *this;
+}
+
+// Оператор перемещения
+Box2D & Box2D::operator = (Box2D && obj)
+{
+  std::swap(m_boxMax, obj.m_boxMax);
+  std::swap(m_boxMin, obj.m_boxMin);
 }
 
 // Метод смещения бокса
@@ -73,4 +97,31 @@ bool Box2D::operator % (Box2D const & obj)
   if (m_boxMax.y() < obj.m_boxMin.y()) return false;
   if (m_boxMin.y() > obj.m_boxMax.y()) return false;
   return true;
+}
+
+Box2D Box2D::Validate(Point2D const & p1, Point2D const & p2)
+{
+  // X
+  if (p1.x() < p2.x())
+  {
+    m_boxMin.x() = p1.x();
+    m_boxMax.x() = p2.x();
+  }
+  else
+  {
+    m_boxMin.x() = p2.x();
+    m_boxMax.x() = p1.x();
+  }
+  // Y
+  if (p1.y() < p2.y())
+  {
+    m_boxMin.y() = p1.y();
+    m_boxMax.y() = p2.y();
+  }
+  else
+  {
+    m_boxMin.y() = p2.y();
+    m_boxMax.y() = p1.y();
+  }
+  return *this;
 }
