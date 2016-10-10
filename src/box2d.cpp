@@ -19,32 +19,16 @@ Box2D::Box2D(Box2D && obj)
 Point2D Box2D::boxMin() const { return m_boxMin; }
 Point2D Box2D::boxMax() const { return m_boxMax; }
 
-Box2D Box2D::SetMin(Point2D const & point)
+void Box2D::SetMin(Point2D const & point)
 {
-  if (point <<= m_boxMax)
-  {
-    m_boxMin = point;
-  }
-  else
-  {
-    Point2D pt = m_boxMax;
-    *this = Validate(point, pt);
-  }
-  return *this;
+  m_boxMin = point;
+  Validate();
 }
 
-Box2D Box2D::SetMax(Point2D const & point)
+void Box2D::SetMax(Point2D const & point)
 {
-  if (m_boxMin <<= point)
-  {
-    m_boxMax = point;
-  }
-  else
-  {
-    Point2D pt = m_boxMin;
-    *this = Validate(point, pt);
-  }
-  return *this;
+  m_boxMax = point;
+  Validate();
 }
 
 // Оператор логического равенства.
@@ -99,8 +83,10 @@ bool Box2D::operator % (Box2D const & obj)
   return true;
 }
 
-Box2D Box2D::Validate(Point2D const & p1, Point2D const & p2)
+Box2D Box2D::Validate()
 {
+  Point2D p1 = m_boxMax;
+  Point2D p2 = m_boxMin;
   // X
   if (p1.x() < p2.x())
   {

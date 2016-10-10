@@ -23,11 +23,11 @@ public:
 
   Point2D boxMin() const;
   Point2D boxMax() const;
-  Box2D SetMin(Point2D const & obj);
-  Box2D SetMax(Point2D const & obj);
+  void SetMin(Point2D const & obj);
+  void SetMax(Point2D const & obj);
   Box2D & operator = (Box2D const & obj);
 
 private:
   Point2D m_boxMin = { 0.0f, 0.0f }, m_boxMax = { 1.0f, 1.0f };
-  Box2D Validate(Point2D const & p1, Point2D const & p2);
+  Box2D Validate();
 };
