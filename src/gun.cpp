@@ -29,9 +29,10 @@ float const & Gun::hp() const { return m_hp; }
 // Методы для получения значения кол-ва патронов
 unsigned int Gun::ammo() const { return m_holder.ammo(); }
 
-// Методы установки значений rate и hp
+// Методы установки значений rate и hp и ammo
 void Gun::SetRate(float rate) { m_rate = rate; }
 void Gun::SetHp(float hp) { m_hp = hp; }
+void Gun::SetAmmo(unsigned int ammo) { m_holder.SetAmmo(ammo); }
 
 // Метод смещения пушки влево или вправо
 void Gun::Move(float offset)

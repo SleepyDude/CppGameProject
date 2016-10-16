@@ -11,6 +11,7 @@ TEST(gun_test, test_construction)
   EXPECT_EQ(g1.position(), pt_1);
   EXPECT_EQ(g1.rate(), 1.0f);
   EXPECT_EQ(g1.hp(), 100.0f);
+  EXPECT_EQ(g1.ammo(), 20);
 
   // Тест конструктора с 2мя аргументами
   Gun g2(15, 150);
@@ -73,4 +74,20 @@ TEST(gun_test, test_set)
   g1.SetHp(20);
   Gun g2(60, 20);
   EXPECT_EQ(g2, g1);
+}
+
+TEST(gun_test, test_shot)
+{
+  // Тест на стрельбу
+  Gun g1;
+  g1.Shot();
+  EXPECT_EQ(g1.ammo(), 19);
+  g1.Shot();
+  EXPECT_EQ(g1.ammo(), 18);
+  g1.SetAmmo(1);
+  EXPECT_EQ(g1.ammo(), 1);
+  g1.Shot();
+  EXPECT_EQ(g1.ammo(), 0);
+  g1.Shot();
+  EXPECT_EQ(g1.ammo(), 0);
 }

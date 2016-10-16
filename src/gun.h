@@ -24,9 +24,11 @@ public:
 
   // Методы для получения значения кол-ва патронов
   unsigned int ammo() const;
+
   // Методы установки значений rate и hp
   void SetRate(float rate);
   void SetHp(float hp);
+  void SetAmmo(unsigned int ammo);
 
   // Метод смещения пушки влево или вправо
   void Move(float offset);
