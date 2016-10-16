@@ -19,6 +19,9 @@ Box2D::Box2D(Box2D && obj)
 Point2D const & Box2D::boxMin() const { return m_boxMin; }
 Point2D const & Box2D::boxMax() const { return m_boxMax; }
 
+// Метод получения центра бокса
+Point2D Box2D::boxMid() const { return (m_boxMax + m_boxMin) / 2; }
+
 void Box2D::SetMin(Point2D const & point)
 {
   m_boxMin = point;

@@ -39,6 +39,11 @@ public:
   bool operator % (Box2D & obj);
   // Оператор перемещения
   Ray2D & operator = (Ray2D && obj);
+  // Метод нормализации
+  void Normalization();
+  // Сеттеры
+  void SetOrigin(Point2D const & p);
+  void SetDirection(Point2D const & p);
 
 private:
   Point2D m_origin = { 0.0f, 0.0f }, m_direction = { 0.0f, 1.0f };
