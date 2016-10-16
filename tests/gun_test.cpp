@@ -48,11 +48,10 @@ TEST(gun_test, test_equal)
 
 TEST(gun_test, test_Move)
 {
-  // Тест на смещение
+  // Тест на смещение ( Влево или вправо )
   Gun g1;
-  Point2D p1 = { 4.0f, -3.0f };
-  g1.Move(p1);
-  Gun g2(p1, 1, 1, 1, 100);
+  g1.Move(4);
+  Gun g2(4, 0, 1, 1, 1, 100);
   EXPECT_EQ(g2, g1);
 }
 
@@ -63,5 +62,15 @@ TEST(gun_test, test_Scale)
   float f1 = 3.0f;
   g1.Scale(f1);
   Gun g2(0, 0, 3, 3, 1, 100);
+  EXPECT_EQ(g2, g1);
+}
+
+TEST(gun_test, test_set)
+{
+  // Тест на Set методы
+  Gun g1;
+  g1.SetRate(60);
+  g1.SetHp(20);
+  Gun g2(60, 20);
   EXPECT_EQ(g2, g1);
 }

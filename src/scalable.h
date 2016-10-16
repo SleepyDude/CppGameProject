@@ -3,6 +3,6 @@
 class Scalable
 {
 public:
-  virtual ~Scalable() {}
+  virtual ~Scalable();
   virtual void Scale(float factor) = 0;
 };

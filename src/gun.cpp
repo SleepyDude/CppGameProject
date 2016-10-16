@@ -26,7 +26,23 @@ bool Gun::operator == (Gun const & obj) const
 // Методы для получения значений скорострельности и здоровья
 float const & Gun::rate() const { return m_rate; }
 float const & Gun::hp() const { return m_hp; }
+// Методы для получения значения кол-ва патронов
+unsigned int Gun::ammo() const { return m_holder.ammo(); }
 
+// Методы установки значений rate и hp
+void Gun::SetRate(float rate) { m_rate = rate; }
+void Gun::SetHp(float hp) { m_hp = hp; }
+
+// Метод смещения пушки влево или вправо
+void Gun::Move(float offset)
+{
+  this->GameEntity::Move( { offset, 0.0f } );
+}
+// Метод стрельбы
+void Gun::Shot()
+{
+  m_holder--;
+}
 void Gun::Update()
 {}
 
