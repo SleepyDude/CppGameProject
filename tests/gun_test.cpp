@@ -37,13 +37,31 @@ TEST(gun_test, test_construction)
   EXPECT_EQ(g4.rate(), 40.0f);
   EXPECT_EQ(g4.hp(), 180.0f);
 }
-/*
+
+TEST(gun_test, test_equal)
+{
+  // Тест на логическое равенство
+  Gun g1 = { 1, 2, 3, 4, 10, 50 };
+  Gun g2 = { 1, 2, 3, 4, 10, 50 };
+  EXPECT_EQ(g1, g2);
+}
+
 TEST(gun_test, test_Move)
 {
+  // Тест на смещение
   Gun g1;
   Point2D p1 = { 4.0f, -3.0f };
   g1.Move(p1);
-  Gun g2(p1, 1, 1);
-  EXPECT_EQ(g2, 180.0f);
+  Gun g2(p1, 1, 1, 1, 100);
+  EXPECT_EQ(g2, g1);
 }
-*/
+
+TEST(gun_test, test_Scale)
+{
+  // Тест на масштабирование
+  Gun g1;
+  float f1 = 3.0f;
+  g1.Scale(f1);
+  Gun g2(0, 0, 3, 3, 1, 100);
+  EXPECT_EQ(g2, g1);
+}
