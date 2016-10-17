@@ -111,3 +111,12 @@ TEST(ray2d_test, test_move_operator)
   EXPECT_EQ(r12_2,r12_3);
   EXPECT_EQ(r12_1,r12_4);
 }
+
+TEST(ray2d_test, test_normalization)
+{
+  // Тест нормализацию направления
+  Ray2D r13_1 = { 3.33f, 4.12f, 2.0f, 2.0f };
+  Ray2D r13_2 = { 3.33f, 4.12f, 0.5*sqrt(2), 0.5*sqrt(2) };
+  r13_1.Normalization();
+  EXPECT_EQ(r13_1,r13_2);
+}

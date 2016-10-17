@@ -140,3 +140,12 @@ TEST(box2d_test, test_move_operator)
   EXPECT_EQ(r12_2,r12_3);
   EXPECT_EQ(r12_1,r12_4);
 }
+
+TEST(box2d_test, test_Mid)
+{
+  // Тест на определение центра
+  Box2D r13_1 = { 3.00f, 4.00f, 6.00f, 8.00f };
+  Point2D pt13_1 = { 4.5f, 6.0f };
+  Point2D pt13_2 = r13_1.boxMid();
+  EXPECT_EQ(pt13_1,pt13_2);
+}

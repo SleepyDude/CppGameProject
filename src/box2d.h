@@ -20,9 +20,10 @@ public:
   Point2D operator [] (unsigned int const & index) const;
   bool operator % (Box2D const & obj);
   Box2D & operator = (Box2D && obj);
+  Point2D boxMid() const;
 
-  Point2D boxMin() const;
-  Point2D boxMax() const;
+  Point2D const & boxMin() const;
+  Point2D const & boxMax() const;
   void SetMin(Point2D const & obj);
   void SetMax(Point2D const & obj);
   Box2D & operator = (Box2D const & obj);
