@@ -10,9 +10,6 @@ class Space
 public:
   Space() = default;
 
-  float const & rate() const;
-  float const & hp() const;
-
   // Методы для получения значений положения и габаритов
   Point2D const & position() const;
   float xDim() const;
