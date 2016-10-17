@@ -45,7 +45,9 @@ void Gun::Shot()
   m_holder--;
 }
 void Gun::Update()
-{}
+{
+  printf("I am gun\n");
+}
 
 Gun::~Gun()
 {}

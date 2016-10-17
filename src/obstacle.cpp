@@ -30,7 +30,9 @@ float const & Obstacle::hp() const { return m_hp; }
 void Obstacle::SetHp(float hp) { m_hp = hp; }
 
 void Obstacle::Update()
-{}
+{
+  printf("I am obstacle\n");
+}
 
 Obstacle::~Obstacle()
 {}
