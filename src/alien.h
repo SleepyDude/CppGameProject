@@ -10,7 +10,7 @@ public:
 
   Alien(float rate, float hp, float velocity);
 
-  Alien(Point2D const & position, Point2D const & dimention, float rate, float hp, float velocity);
+  Alien(Point2D const & position, Point2D const & dimension, float rate, float hp, float velocity);
 
   // Перегрузка логического равенства
   bool operator == (Alien const & obj) const;
