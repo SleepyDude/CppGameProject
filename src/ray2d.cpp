@@ -100,16 +100,13 @@ bool Ray2D::operator % (Box2D & obj)
           p3 = obj.boxMax(), p4 = { obj.boxMax().x(), obj.boxMin().y() };
   return Intersect(p1,p2) || Intersect(p2,p3) || Intersect(p3,p4) || Intersect(p4,p1);
 }
-
+// Нормализация
 void Ray2D::Normalization()
 {
-  if ( (m_direction.x() * m_direction.x() + m_direction.y() * m_direction.y()) != 1.0 )
-  {
-    float hyp = sqrt( m_direction.x() * m_direction.x() + m_direction.y() * m_direction.y());
-    m_direction.x() /= hyp;
-    m_direction.y() /= hyp;
-  }
+  float hyp = sqrt( m_direction.x() * m_direction.x() + m_direction.y() * m_direction.y());
+  m_direction.x() /= hyp;
+  m_direction.y() /= hyp;
 }
-
+// Cеттеры
 void Ray2D::SetOrigin(Point2D const & p) { m_origin = p; }
 void Ray2D::SetDirection(Point2D const & p) { m_direction = p; }

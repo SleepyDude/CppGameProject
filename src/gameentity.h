@@ -10,11 +10,10 @@
 class GameEntity: public Movable, public Scalable
 {
 public:
-  // Конструктор по умолчанию
   GameEntity() = default;
-  // Конструктор по точке и 2м габаритам
-  GameEntity(Point2D pos, float xDim, float yDim);
-  // Конструктор с четырмя аргументами
+
+  GameEntity(Point2D const & pos, float xDim, float yDim);
+
   GameEntity(float xPos, float yPos, float xDim, float yDim);
   // Чистая виртуальная функция
   virtual void Update() = 0;

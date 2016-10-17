@@ -1,20 +1,11 @@
 #include "obstacle.h"
 
-// Конструктор без параметров
-Obstacle::Obstacle()
-  : GameEntity()
-{}
-// Конструктор с одним аргументом
 Obstacle::Obstacle(float hp)
   : m_hp(hp)
 {}
-// Конструктор с 4мя аргументами
-Obstacle::Obstacle(Point2D pos, float xDim, float yDim, float hp)
-  : GameEntity(pos, xDim, yDim), m_hp(hp)
-{}
-// Конструктор с 5ю аргументами
-Obstacle::Obstacle(float xPos, float yPos, float xDim, float yDim, float hp)
-  : GameEntity(xPos, yPos, xDim, yDim), m_hp(hp)
+
+Obstacle::Obstacle(Point2D const & position, Point2D const & dimension, float hp)
+  : GameEntity(position.x(), position.y(), dimension.x(), dimension.y()), m_hp(hp)
 {}
 
 // Оператор логического равенства.
@@ -33,6 +24,3 @@ void Obstacle::Update()
 {
   printf("I am obstacle\n");
 }
-
-Obstacle::~Obstacle()
-{}

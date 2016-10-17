@@ -14,7 +14,6 @@ TEST(alien_test, test_construction)
   EXPECT_EQ(a1.ammo(), 20);
   EXPECT_EQ(a1.velocity(), 1);
 
-  // Тест конструктора с 3мя аргументами
   Alien a2(15, 150, 7);
   EXPECT_EQ(a2.xDim(), 1.0f);
   EXPECT_EQ(a2.yDim(), 1.0f);
@@ -23,18 +22,8 @@ TEST(alien_test, test_construction)
   EXPECT_EQ(a2.hp(), 150.0f);
   EXPECT_EQ(a2.velocity(), 7);
 
-  // Тест конструктора с 6ю аргументами
-  Point2D pt_2 = { 4.0f, 7.0f };
-  Alien a3(pt_2, 3, 4, 15, 150, 9);
-  EXPECT_EQ(a3.xDim(), 3.0f);
-  EXPECT_EQ(a3.yDim(), 4.0f);
-  EXPECT_EQ(a3.position(), pt_2);
-  EXPECT_EQ(a3.rate(), 15.0f);
-  EXPECT_EQ(a3.hp(), 150.0f);
-  EXPECT_EQ(a3.velocity(), 9);
-
-  // Тест конструктора с 7ю аргументами
-  Alien a4(4, 7, 3, 4, 40, 180, 6);
+  Point2D pt_2 = {4, 7};
+  Alien a4({4, 7}, {3, 4}, 40, 180, 6);
   EXPECT_EQ(a4.xDim(), 3.0f);
   EXPECT_EQ(a4.yDim(), 4.0f);
   EXPECT_EQ(a4.position(), pt_2);
@@ -46,8 +35,8 @@ TEST(alien_test, test_construction)
 TEST(alien_test, test_equal)
 {
   // Тест на логическое равенство
-  Alien a1 = { 1, 2, 3, 4, 10, 50, 6 };
-  Alien a2 = { 1, 2, 3, 4, 10, 50, 6 };
+  Alien a1 = { {1, 2}, {3, 4}, 10, 50, 6 };
+  Alien a2 = { {1, 2}, {3, 4}, 10, 50, 6 };
   EXPECT_EQ(a1, a2);
 }
 
@@ -56,7 +45,7 @@ TEST(alien_test, test_Move)
   // Тест на смещение ( вниз )
   Alien a1;
   a1.Move(-4);
-  Alien a2(0, -4, 1, 1, 1, 10, 1);
+  Alien a2({0, -4}, {1, 1}, 1, 10, 1);
   EXPECT_EQ(a2, a1);
 }
 
@@ -66,7 +55,7 @@ TEST(alien_test, test_Scale)
   Alien a1;
   float f1 = 3.0f;
   a1.Scale(f1);
-  Alien a2(0, 0, 3, 3, 1, 10, 1);
+  Alien a2({0, 0}, {3, 3}, 1, 10, 1);
   EXPECT_EQ(a2, a1);
 }
 

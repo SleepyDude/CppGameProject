@@ -1,10 +1,9 @@
 #include "gameentity.h"
 
-// Конструктор по точке и 2м габаритам
-GameEntity::GameEntity(Point2D pos, float xDim, float yDim)
+GameEntity::GameEntity(Point2D const & pos, float xDim, float yDim)
   : m_box(pos.x(), pos.y(), pos.x() + xDim, pos.y() + yDim)
 {}
-// Конструктор с четырмя аргументами
+
 GameEntity::GameEntity(float xPos, float yPos, float xDim, float yDim)
   : m_box(xPos, yPos, xPos + xDim, yPos + yDim)
 {}

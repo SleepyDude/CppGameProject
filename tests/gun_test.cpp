@@ -13,7 +13,6 @@ TEST(gun_test, test_construction)
   EXPECT_EQ(g1.hp(), 100.0f);
   EXPECT_EQ(g1.ammo(), 20);
 
-  // Тест конструктора с 2мя аргументами
   Gun g2(15, 150);
   EXPECT_EQ(g2.xDim(), 1.0f);
   EXPECT_EQ(g2.yDim(), 1.0f);
@@ -21,17 +20,8 @@ TEST(gun_test, test_construction)
   EXPECT_EQ(g2.rate(), 15.0f);
   EXPECT_EQ(g2.hp(), 150.0f);
 
-  // Тест конструктора с 5ю аргументами
   Point2D pt_2 = { 4.0f, 7.0f };
-  Gun g3(pt_2, 3, 4, 15, 150);
-  EXPECT_EQ(g3.xDim(), 3.0f);
-  EXPECT_EQ(g3.yDim(), 4.0f);
-  EXPECT_EQ(g3.position(), pt_2);
-  EXPECT_EQ(g3.rate(), 15.0f);
-  EXPECT_EQ(g3.hp(), 150.0f);
-
-  // Тест конструктора с 6ю аргументами
-  Gun g4(4, 7, 3, 4, 40, 180);
+  Gun g4({4, 7}, {3, 4}, 40, 180);
   EXPECT_EQ(g4.xDim(), 3.0f);
   EXPECT_EQ(g4.yDim(), 4.0f);
   EXPECT_EQ(g4.position(), pt_2);
@@ -42,8 +32,8 @@ TEST(gun_test, test_construction)
 TEST(gun_test, test_equal)
 {
   // Тест на логическое равенство
-  Gun g1 = { 1, 2, 3, 4, 10, 50 };
-  Gun g2 = { 1, 2, 3, 4, 10, 50 };
+  Gun g1 = { {1, 2}, {3, 4}, 10, 50 };
+  Gun g2 = { {1, 2}, {3, 4}, 10, 50 };
   EXPECT_EQ(g1, g2);
 }
 
@@ -52,7 +42,7 @@ TEST(gun_test, test_Move)
   // Тест на смещение ( Влево или вправо )
   Gun g1;
   g1.Move(4);
-  Gun g2(4, 0, 1, 1, 1, 100);
+  Gun g2({4, 0}, {1, 1}, 1, 100);
   EXPECT_EQ(g2, g1);
 }
 
@@ -62,7 +52,7 @@ TEST(gun_test, test_Scale)
   Gun g1;
   float f1 = 3.0f;
   g1.Scale(f1);
-  Gun g2(0, 0, 3, 3, 1, 100);
+  Gun g2({0, 0}, {3, 3}, 1, 100);
   EXPECT_EQ(g2, g1);
 }
 

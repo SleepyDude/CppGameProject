@@ -1,20 +1,11 @@
 #include "alien.h"
 
-// Конструктор без параметров
-Alien::Alien()
-  : GameEntity()
-{}
-// Конструктор с тремя аргументами
 Alien::Alien(float rate, float hp, float velocity)
   : m_rate(rate), m_hp(hp), m_velocity(velocity)
 {}
-// Конструктор с 6ю аргументами
-Alien::Alien(Point2D pos, float xDim, float yDim, float rate, float hp, float velocity)
-  : GameEntity(pos, xDim, yDim), m_rate(rate), m_hp(hp), m_velocity(velocity)
-{}
-// Конструктор с 7ю аргументами
-Alien::Alien(float xPos, float yPos, float xDim, float yDim, float rate, float hp, float velocity)
-  : GameEntity(xPos, yPos, xDim, yDim), m_rate(rate), m_hp(hp), m_velocity(velocity)
+
+Alien::Alien(Point2D const & position, Point2D const & dimension, float rate, float hp, float velocity)
+  : GameEntity(position.x(), position.y(), dimension.x(), dimension.y()), m_rate(rate), m_hp(hp), m_velocity(velocity)
 {}
 
 // Оператор логического равенства.
@@ -40,7 +31,7 @@ void Alien::SetVelocity(float velocity) { m_velocity = velocity; }
 // Метод смещения пришельца вверх и вниз
 void Alien::Move(float offset)
 {
-  this->GameEntity::Move( { 0.0f, offset } );
+  GameEntity::Move( { 0.0f, offset } );
 }
 // Метод стрельбы
 void Alien::Shot()
@@ -48,7 +39,4 @@ void Alien::Shot()
   m_holder--;
 }
 void Alien::Update()
-{}
-
-Alien::~Alien()
 {}

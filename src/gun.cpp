@@ -1,20 +1,11 @@
 #include "gun.h"
 
-// Конструктор без параметров
-Gun::Gun()
-  : GameEntity()
-{}
-// Конструктор с двумя аргументами
 Gun::Gun(float rate, float hp)
   : m_rate(rate), m_hp(hp)
 {}
-// Конструктор с 5ю аргументами
-Gun::Gun(Point2D pos, float xDim, float yDim, float rate, float hp)
-  : GameEntity(pos, xDim, yDim), m_rate(rate), m_hp(hp)
-{}
-// Конструктор с 6ю аргументами
-Gun::Gun(float xPos, float yPos, float xDim, float yDim, float rate, float hp)
-  : GameEntity(xPos, yPos, xDim, yDim), m_rate(rate), m_hp(hp)
+
+Gun::Gun(Point2D const & position, Point2D const & dimension, float rate, float hp)
+  : GameEntity(position.x(), position.y(), dimension.x(), dimension.y()), m_rate(rate), m_hp(hp)
 {}
 
 // Оператор логического равенства.
@@ -37,7 +28,7 @@ void Gun::SetAmmo(unsigned int ammo) { m_holder.SetAmmo(ammo); }
 // Метод смещения пушки влево или вправо
 void Gun::Move(float offset)
 {
-  this->GameEntity::Move( { offset, 0.0f } );
+  GameEntity::Move( { offset, 0.0f } );
 }
 // Метод стрельбы
 void Gun::Shot()
@@ -48,6 +39,3 @@ void Gun::Update()
 {
   printf("I am gun\n");
 }
-
-Gun::~Gun()
-{}

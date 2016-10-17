@@ -5,14 +5,11 @@
 class Obstacle: public GameEntity
 {
 public:
-  // Конструктор по умолчанию
-  Obstacle();
-  // Конструктор с одним аргументом
+  Obstacle() = default;
+
   Obstacle(float hp);
-  // Конструктор с 4мя аргументами
-  Obstacle(Point2D pos, float xDim, float yDim, float hp);
-  // Конструктор с 5ю аргументами
-  Obstacle(float xPos, float yPos, float xDim, float yDim, float hp);
+
+  Obstacle(Point2D const & position, Point2D const & dimension, float hp);
 
   // Перегрузка логического равенства
   bool operator == (Obstacle const & obj) const;
@@ -24,7 +21,7 @@ public:
   void SetHp(float hp);
 
   void Update() override;
-  ~Obstacle() override;
+  ~Obstacle() override = default;
 private:
   float m_hp = 1000.0f;
 };

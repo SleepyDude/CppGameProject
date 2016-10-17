@@ -1,20 +1,11 @@
 #include "bullet.h"
 
-// Конструктор без параметров
-Bullet::Bullet()
-  : GameEntity()
-{}
-// Конструктор с тремя аргументами
 Bullet::Bullet(float damage, float velocity, Point2D direction)
   : m_damage(damage), m_velocity(velocity), m_ray(Box().boxMid(), direction)
 {}
-// Конструктор с 6ю аргументами
-Bullet::Bullet(Point2D pos, float xDim, float yDim, float damage, float velocity, Point2D direction)
-  : GameEntity(pos, xDim, yDim), m_damage(damage), m_velocity(velocity), m_ray(Box().boxMid(), direction)
-{}
-// Конструктор с 7ю аргументами
-Bullet::Bullet(float xPos, float yPos, float xDim, float yDim, float damage, float velocity, Point2D direction)
-  : GameEntity(xPos, yPos, xDim, yDim), m_damage(damage), m_velocity(velocity), m_ray(Box().boxMid(), direction)
+
+Bullet::Bullet(Point2D const & position, Point2D const & dimension, float damage, float velocity, Point2D direction)
+  : GameEntity(position.x(), position.y(), dimension.x(), dimension.y()), m_damage(damage), m_velocity(velocity), m_ray(Box().boxMid(), direction)
 {}
 
 // Оператор логического равенства.
@@ -37,12 +28,9 @@ void Bullet::SetDirection(Point2D direction) { m_ray.SetDirection(direction); }
 void Bullet::Move()
 {
   m_ray.Normalization();
-  this->GameEntity::Move(m_ray.direction());
+  GameEntity::Move(m_ray.direction());
   m_ray.SetOrigin(Box().boxMid());
 }
 
 void Bullet::Update()
-{}
-
-Bullet::~Bullet()
 {}

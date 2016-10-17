@@ -6,14 +6,11 @@
 class Alien: public GameEntity
 {
 public:
-  // Конструктор по умолчанию
-  Alien();
-  // Конструктор с тремя аргументами
+  Alien() = default;
+
   Alien(float rate, float hp, float velocity);
-  // Конструктор с 6ю аргументами
-  Alien(Point2D pos, float xDim, float yDim, float rate, float hp, float velocity);
-  // Конструктор с 7ю аргументами
-  Alien(float xPos, float yPos, float xDim, float yDim, float rate, float hp, float velocity);
+
+  Alien(Point2D const & position, Point2D const & dimention, float rate, float hp, float velocity);
 
   // Перегрузка логического равенства
   bool operator == (Alien const & obj) const;
@@ -39,7 +36,7 @@ public:
   void Shot();
 
   void Update() override;
-  ~Alien() override;
+  ~Alien() override = default;
 private:
   // Скорострельность и хилпоинты
   float m_rate = 1.0f , m_hp = 10.0f, m_velocity = 1.0f;

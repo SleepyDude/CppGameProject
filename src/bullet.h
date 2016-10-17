@@ -5,14 +5,11 @@
 class Bullet: public GameEntity
 {
 public:
-  // Конструктор по умолчанию
-  Bullet();
-  // Конструктор с тремя аргументами
+  Bullet() = default;
+
   Bullet(float damage, float velocity, Point2D direction);
-  // Конструктор с 6ю аргументами
-  Bullet(Point2D pos, float xDim, float yDim, float damage, float velocity, Point2D direction);
-  // Конструктор с 7ю аргументами
-  Bullet(float xPos, float yPos, float xDim, float yDim, float damage, float velocity, Point2D direction);
+
+  Bullet(Point2D const & position, Point2D const & dimension, float damage, float velocity, Point2D direction);
 
   // Перегрузка логического равенства
   bool operator == (Bullet const & obj) const;
@@ -31,7 +28,7 @@ public:
   void Move();
 
   void Update() override;
-  ~Bullet() override;
+  ~Bullet() override = default;
 private:
   float m_damage = 1.0f, m_velocity = 1.0f;
   Ray2D m_ray = { Box().boxMid().x(), Box().boxMid().y(), 0.0f, 1.0f };

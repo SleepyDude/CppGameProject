@@ -5,6 +5,6 @@
 class Movable
 {
 public:
-  virtual ~Movable();
+  virtual ~Movable() = default;
   virtual void Move(Point2D const & offset) = 0;
 };
