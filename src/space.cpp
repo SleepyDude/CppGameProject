@@ -19,7 +19,7 @@ void Space::Add(GameEntity* element)
 void Space::Update()
 {
   for(std::list<GameEntity*>::iterator it=m_list.begin();it!=m_list.end();++it)
-    {
-      (*it)->Update();
-    }
+  {
+    (*it)->Update();
+  }
 }
