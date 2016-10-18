@@ -24,5 +24,9 @@ void GameEntity::Move(Point2D const & offset)
 
 void GameEntity::Scale(float factor)
 {
+  if ( factor <= 0 )
+  {
+    throw std::invalid_argument("scale factor must be positive");
+  }
   m_box.SetMax(m_box.boxMin() + ( m_box.boxMax() - m_box.boxMin() ) * factor);
 }
