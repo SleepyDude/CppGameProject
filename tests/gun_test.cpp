@@ -120,11 +120,11 @@ TEST(gun_test, test_shot)
 TEST(gun_test, test_exceptions)
 {
   Gun g1;
-  ASSERT_THROW(Gun g2({0, 0}, {-3, 3}, 1, 100), std::invalid_argument);
-  ASSERT_THROW(Gun g2({0, 0}, {3, -3}, 1, 100), std::invalid_argument);
-  ASSERT_THROW(Gun g2({0, 0}, {3, 3}, -1, 100), std::invalid_argument);
-  ASSERT_THROW(Gun g2({0, 0}, {3, 3}, 1, -100), std::invalid_argument);
-  ASSERT_THROW(g1.SetAmmo(-6);, std::invalid_argument);
-  ASSERT_THROW(g1.SetHp(-8);, std::invalid_argument);
-  ASSERT_THROW(g1.SetRate(0);, std::invalid_argument);
+  EXPECT_THROW(Gun g2({0, 0}, {-3, 3}, 1, 100), std::invalid_argument);
+  EXPECT_THROW(Gun g2({0, 0}, {3, -3}, 1, 100), std::invalid_argument);
+  EXPECT_THROW(Gun g2({0, 0}, {3, 3}, -1, 100), std::invalid_argument);
+  EXPECT_THROW(Gun g2({0, 0}, {3, 3}, 1, -100), std::invalid_argument);
+  EXPECT_THROW(g1.SetAmmo(-6);, std::invalid_argument);
+  EXPECT_THROW(g1.SetHp(-8);, std::invalid_argument);
+  EXPECT_THROW(g1.SetRate(0);, std::invalid_argument);
 }

@@ -140,6 +140,6 @@ TEST(point2d_test, test_move_operator)
 TEST(point2d_test, test_exceptions)
 {
   Point2D p1 = { 3.33f, 4.12f };
-  ASSERT_THROW(p1 / 0, std::invalid_argument);
-  ASSERT_THROW(p1 /= 0, std::invalid_argument);
+  EXPECT_THROW(p1 / 0, std::invalid_argument);
+  EXPECT_THROW(p1 /= 0, std::invalid_argument);
 }

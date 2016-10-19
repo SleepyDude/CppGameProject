@@ -3,7 +3,7 @@
 Obstacle::Obstacle(float hp)
   : m_hp(hp)
 {
-  if ( hp <= 0 )
+  if (hp <= 0)
   {
     throw std::invalid_argument("hp must be positive");
   }
@@ -12,7 +12,7 @@ Obstacle::Obstacle(float hp)
 Obstacle::Obstacle(Point2D const & position, Point2D const & dimension, float hp)
   : GameEntity(position.x(), position.y(), dimension.x(), dimension.y()), m_hp(hp)
 {
-  if ( hp <= 0 )
+  if (hp <= 0)
   {
     throw std::invalid_argument("hp must be positive");
   }
@@ -30,7 +30,7 @@ float const & Obstacle::hp() const { return m_hp; }
 // Метод установки значения hp
 void Obstacle::SetHp(float hp)
 {
-  if ( hp <= 0 )
+  if (hp <= 0)
   {
     throw std::invalid_argument("hp must be positive");
   }

@@ -112,8 +112,8 @@ TEST(bullet_test, test_set)
 TEST(bullet_test, test_exceptions)
 {
   Bullet b1;
-  ASSERT_THROW(Bullet b2(-60, 15, { 2, 3 }), std::invalid_argument);
-  ASSERT_THROW(Bullet b2(60, -15, { 2, 3 }), std::invalid_argument);
-  ASSERT_THROW(b1.SetDamage(-5);, std::invalid_argument);
-  ASSERT_THROW(b1.SetVelocity(-10);, std::invalid_argument);
+  EXPECT_THROW(Bullet b2(-60, 15, { 2, 3 }), std::invalid_argument);
+  EXPECT_THROW(Bullet b2(60, -15, { 2, 3 }), std::invalid_argument);
+  EXPECT_THROW(b1.SetDamage(-5);, std::invalid_argument);
+  EXPECT_THROW(b1.SetVelocity(-10);, std::invalid_argument);
 }

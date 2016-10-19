@@ -3,7 +3,7 @@
 Alien::Alien(float rate, float hp, float velocity)
   : m_rate(rate), m_hp(hp), m_velocity(velocity)
 {
-  if ( rate <= 0 || velocity < 0 || hp <= 0 )
+  if (rate <= 0 || velocity < 0 || hp <= 0)
   {
     throw std::invalid_argument("rate, velocity and hp must be positive");
   }
@@ -12,7 +12,7 @@ Alien::Alien(float rate, float hp, float velocity)
 Alien::Alien(Point2D const & position, Point2D const & dimension, float rate, float hp, float velocity)
   : GameEntity(position.x(), position.y(), dimension.x(), dimension.y()), m_rate(rate), m_hp(hp), m_velocity(velocity)
 {
-  if ( rate <= 0 || velocity < 0 || hp <= 0 )
+  if (rate <= 0 || velocity < 0 || hp <= 0)
   {
     throw std::invalid_argument("rate, velocity and hp must be positive");
   }
@@ -35,7 +35,7 @@ float const & Alien::velocity() const { return m_velocity; }
 // Методы установки значений
 void Alien::SetRate(float rate)
 {
-  if ( rate <= 0 )
+  if (rate <= 0)
   {
     throw std::invalid_argument("rate must be positive");
   }
@@ -43,7 +43,7 @@ void Alien::SetRate(float rate)
 }
 void Alien::SetHp(float hp)
 {
-  if ( hp <= 0 )
+  if (hp <= 0)
   {
     throw std::invalid_argument("hp must be positive");
   }
@@ -55,7 +55,7 @@ void Alien::SetAmmo(unsigned int ammo)
 }
 void Alien::SetVelocity(float velocity)
 {
-  if ( velocity < 0 )
+  if (velocity < 0)
   {
     throw std::invalid_argument("velocity must be positive");
   }

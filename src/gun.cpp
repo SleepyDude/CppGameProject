@@ -3,7 +3,7 @@
 Gun::Gun(float rate, float hp)
   : m_rate(rate), m_hp(hp)
 {
-  if ( rate <= 0 || hp <= 0 )
+  if (rate <= 0 || hp <= 0)
   {
     throw std::invalid_argument("rate and hp must be positive");
   }
@@ -12,7 +12,7 @@ Gun::Gun(float rate, float hp)
 Gun::Gun(Point2D const & position, Point2D const & dimension, float rate, float hp)
   : GameEntity(position.x(), position.y(), dimension.x(), dimension.y()), m_rate(rate), m_hp(hp)
 {
-  if ( rate <= 0 || hp <= 0 )
+  if (rate <= 0 || hp <= 0)
   {
     throw std::invalid_argument("rate and hp must be positive");
   }
@@ -33,7 +33,7 @@ unsigned int Gun::ammo() const { return m_holder.ammo(); }
 // Методы установки значений rate и hp и ammo
 void Gun::SetRate(float rate)
 {
-  if ( rate <= 0 )
+  if (rate <= 0)
   {
     throw std::invalid_argument("rate must be positive");
   }
@@ -41,7 +41,7 @@ void Gun::SetRate(float rate)
 }
 void Gun::SetHp(float hp)
 {
-  if ( hp <= 0 )
+  if (hp <= 0)
   {
     throw std::invalid_argument("hp must be positive");
   }

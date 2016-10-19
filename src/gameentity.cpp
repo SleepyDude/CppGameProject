@@ -34,7 +34,7 @@ void GameEntity::Move(Point2D const & offset)
 
 void GameEntity::Scale(float factor)
 {
-  if ( factor <= 0 )
+  if (factor <= 0)
   {
     throw std::invalid_argument("scale factor must be positive");
   }

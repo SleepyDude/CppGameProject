@@ -125,11 +125,11 @@ TEST(alien_test, test_shot)
 TEST(alien_test, test_exceptions)
 {
   Alien a2;
-  ASSERT_THROW(Alien a1({4, 7}, {3, 4}, -40, 180, 6), std::invalid_argument);
-  ASSERT_THROW(Alien a1({4, 7}, {3, 4}, 40, -180, 6), std::invalid_argument);
-  ASSERT_THROW(Alien a1({4, 7}, {3, 4}, 40, 180, -6), std::invalid_argument);
-  ASSERT_THROW(Alien a1({4, 7}, {-3, 4}, 40, 180, 6), std::invalid_argument);
-  ASSERT_THROW(Alien a1({4, 7}, {3, -4}, 40, 180, 6), std::invalid_argument);
-  ASSERT_THROW(a2.SetAmmo(-3), std::invalid_argument);
-  ASSERT_THROW(a2.Scale(-4.0);, std::invalid_argument);
+  EXPECT_THROW(Alien a1({4, 7}, {3, 4}, -40, 180, 6), std::invalid_argument);
+  EXPECT_THROW(Alien a1({4, 7}, {3, 4}, 40, -180, 6), std::invalid_argument);
+  EXPECT_THROW(Alien a1({4, 7}, {3, 4}, 40, 180, -6), std::invalid_argument);
+  EXPECT_THROW(Alien a1({4, 7}, {-3, 4}, 40, 180, 6), std::invalid_argument);
+  EXPECT_THROW(Alien a1({4, 7}, {3, -4}, 40, 180, 6), std::invalid_argument);
+  EXPECT_THROW(a2.SetAmmo(-3), std::invalid_argument);
+  EXPECT_THROW(a2.Scale(-4.0);, std::invalid_argument);
 }

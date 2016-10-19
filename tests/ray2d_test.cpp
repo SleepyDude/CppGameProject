@@ -187,6 +187,6 @@ TEST(ray2d_test, test_normalization)
 TEST(ray2d_test, test_exceptions)
 {
   Ray2D r14_1;
-  ASSERT_THROW(Ray2D r14_2( 3.33f, 4.12f, 0.0f, 0.0f), std::invalid_argument);
-  ASSERT_THROW(r14_1.SetDirection({0, 0});, std::invalid_argument);
+  EXPECT_THROW(Ray2D r14_2( 3.33f, 4.12f, 0.0f, 0.0f), std::invalid_argument);
+  EXPECT_THROW(r14_1.SetDirection({0, 0});, std::invalid_argument);
 }

@@ -3,7 +3,7 @@
 Bullet::Bullet(float damage, float velocity, Point2D direction)
   : m_damage(damage), m_velocity(velocity), m_ray(Box().boxMid(), direction)
 {
-  if ( damage <= 0 || velocity <= 0 )
+  if (damage <= 0 || velocity <= 0)
   {
     throw std::invalid_argument("damage and velocity must be positive");
   }
@@ -12,7 +12,7 @@ Bullet::Bullet(float damage, float velocity, Point2D direction)
 Bullet::Bullet(Point2D const & position, Point2D const & dimension, float damage, float velocity, Point2D direction)
   : GameEntity(position.x(), position.y(), dimension.x(), dimension.y()), m_damage(damage), m_velocity(velocity), m_ray(Box().boxMid(), direction)
 {
-  if ( damage <= 0 || velocity <= 0 )
+  if (damage <= 0 || velocity <= 0)
   {
     throw std::invalid_argument("damage and velocity must be positive");
   }
@@ -32,7 +32,7 @@ Point2D Bullet::direction() const { return m_ray.direction(); }
 // Методы установки значений
 void Bullet::SetDamage(float damage)
 {
-  if ( damage <= 0 )
+  if (damage <= 0)
   {
     throw std::invalid_argument("damage must be positive");
   }
@@ -40,7 +40,7 @@ void Bullet::SetDamage(float damage)
 }
 void Bullet::SetVelocity(float velocity)
 {
-  if ( velocity <= 0 )
+  if (velocity <= 0)
   {
     throw std::invalid_argument("velocity must be positive");
   }

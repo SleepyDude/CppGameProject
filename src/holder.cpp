@@ -4,7 +4,7 @@ unsigned int const & Holder::ammo() const { return m_ammo; }
 
 void Holder::SetAmmo(unsigned int ammo)
 {
-  if ( ammo < 0 || ammo > 100)
+  if (ammo < 0 || ammo > 100)
   {
     throw std::invalid_argument("ammo must be in range 0..100");
   }

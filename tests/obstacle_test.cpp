@@ -83,8 +83,8 @@ TEST(obstacle_test, test_set)
 TEST(obstacle_test, test_exceptions)
 {
   Obstacle o1;
-  ASSERT_THROW(Obstacle o2({0, 0}, {-3, 3}, 1000), std::invalid_argument);
-  ASSERT_THROW(Obstacle o2({0, 0}, {3, -3}, 1000), std::invalid_argument);
-  ASSERT_THROW(Obstacle o2({0, 0}, {3, 3}, -1000), std::invalid_argument);
-  ASSERT_THROW(o1.SetHp(-1000);, std::invalid_argument);
+  EXPECT_THROW(Obstacle o2({0, 0}, {-3, 3}, 1000), std::invalid_argument);
+  EXPECT_THROW(Obstacle o2({0, 0}, {3, -3}, 1000), std::invalid_argument);
+  EXPECT_THROW(Obstacle o2({0, 0}, {3, 3}, -1000), std::invalid_argument);
+  EXPECT_THROW(o1.SetHp(-1000);, std::invalid_argument);
 }
