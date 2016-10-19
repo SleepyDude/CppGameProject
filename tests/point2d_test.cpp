@@ -53,28 +53,32 @@ TEST(point2d_test, test_equality)
 
 TEST(point2d_test, test_calculus)
 {
-  Point2D p1 = { 1.2f, 2.4f };
-  Point2D p2 = { 1.0f, 2.0f };
+  try
+  {
+    Point2D p1 = { 1.2f, 2.4f };
+    Point2D p2 = { 1.0f, 2.0f };
 
-  EXPECT_EQ(p1 + p2, Point2D(2.2f, 4.4f));
-  EXPECT_EQ(p1 - p2, Point2D(0.2f, 0.4f));
-  EXPECT_EQ(p1 * 2.0f, Point2D(2.4f, 4.8f));
-  EXPECT_EQ(p1 / 2.0f, Point2D(0.6f, 1.2f));
-  EXPECT_EQ(p1 / 0.0f, Point2D(0.0f, 0.0f));
+    EXPECT_EQ(p1 + p2, Point2D(2.2f, 4.4f));
+    EXPECT_EQ(p1 - p2, Point2D(0.2f, 0.4f));
+    EXPECT_EQ(p1 * 2.0f, Point2D(2.4f, 4.8f));
+    EXPECT_EQ(p1 / 2.0f, Point2D(0.6f, 1.2f));
 
-  p1 += { 1.2f, 2.4f };
-  EXPECT_EQ(p1, Point2D(2.4f, 4.8f));
+    p1 += { 1.2f, 2.4f };
+    EXPECT_EQ(p1, Point2D(2.4f, 4.8f));
 
-  p1 -= { 1.2f, 2.4f };
-  EXPECT_EQ(p1, Point2D(1.2f, 2.4f));
+    p1 -= { 1.2f, 2.4f };
+    EXPECT_EQ(p1, Point2D(1.2f, 2.4f));
 
-  p1 *= 2.0f;
-  EXPECT_EQ(p1, Point2D(2.4f, 4.8f));
+    p1 *= 2.0f;
+    EXPECT_EQ(p1, Point2D(2.4f, 4.8f));
 
-  p1 /= 2.0f;
-  EXPECT_EQ(p1, Point2D(1.2f, 2.4f));
-  p1 /= 0.0f;
-  EXPECT_EQ(p1, Point2D(0.0f, 0.0f));
+    p1 /= 2.0f;
+    EXPECT_EQ(p1, Point2D(1.2f, 2.4f));
+  }
+  catch (std::invalid_argument const & ex)
+  {
+    std::cerr << ex.what();
+  }
 }
 
 TEST(point2d_test, test_square_brackets)
@@ -131,4 +135,11 @@ TEST(point2d_test, test_move_operator)
   Point2D p4 = { 6.11f, 7.21f };
   EXPECT_EQ(p2,p3);
   EXPECT_EQ(p1,p4);
+}
+
+TEST(point2d_test, test_exceptions)
+{
+  Point2D p1 = { 3.33f, 4.12f };
+  ASSERT_THROW(p1 / 0, std::invalid_argument);
+  ASSERT_THROW(p1 /= 0, std::invalid_argument);
 }

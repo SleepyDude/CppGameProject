@@ -2,7 +2,12 @@
 
 Ray2D::Ray2D(Point2D const & origin, Point2D const & direction)
   : m_origin(origin), m_direction(direction)
-{}
+{
+  if ( direction.x() == 0 && direction.y() == 0 )
+  {
+    throw std::invalid_argument("zero direction");
+  }
+}
 
 Ray2D::Ray2D(Ray2D const & obj)
   : m_origin(obj.m_origin), m_direction(obj.m_direction)
@@ -10,7 +15,12 @@ Ray2D::Ray2D(Ray2D const & obj)
 
 Ray2D::Ray2D(float f1, float f2, float f3, float f4)
   : m_origin(f1, f2), m_direction(f3, f4)
-{}
+{
+  if ( f3 == 0 && f4 == 0 )
+  {
+    throw std::invalid_argument("zero direction");
+  }
+}
 
 Ray2D::Ray2D(Ray2D && obj)
 {
@@ -109,4 +119,11 @@ void Ray2D::Normalization()
 }
 // Cеттеры
 void Ray2D::SetOrigin(Point2D const & p) { m_origin = p; }
-void Ray2D::SetDirection(Point2D const & p) { m_direction = p; }
+void Ray2D::SetDirection(Point2D const & p)
+{
+  if ( p.x() == 0 && p.y() == 0 )
+  {
+    throw std::invalid_argument("zero direction");
+  }
+  m_direction = p;
+}

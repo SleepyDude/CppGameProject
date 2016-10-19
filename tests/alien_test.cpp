@@ -42,18 +42,32 @@ TEST(alien_test, test_construction)
 TEST(alien_test, test_equal)
 {
   // Тест на логическое равенство
-  Alien a1 = { {1, 2}, {3, 4}, 10, 50, 6 };
-  Alien a2 = { {1, 2}, {3, 4}, 10, 50, 6 };
-  EXPECT_EQ(a1, a2);
+  try
+  {
+    Alien a1 = { {1, 2}, {3, 4}, 10, 50, 6 };
+    Alien a2 = { {1, 2}, {3, 4}, 10, 50, 6 };
+    EXPECT_EQ(a1, a2);
+  }
+  catch (std::invalid_argument const & ex)
+  {
+    std::cerr << ex.what();
+  }
 }
 
 TEST(alien_test, test_Move)
 {
   // Тест на смещение ( вниз )
-  Alien a1;
-  a1.Move(-4);
-  Alien a2({0, -4}, {1, 1}, 1, 10, 1);
-  EXPECT_EQ(a2, a1);
+  try
+  {
+    Alien a1;
+    a1.Move(-4);
+    Alien a2({0, -4}, {1, 1}, 1, 10, 1);
+    EXPECT_EQ(a2, a1);
+  }
+  catch (std::invalid_argument const & ex)
+  {
+    std::cerr << ex.what();
+  }
 }
 
 TEST(alien_test, test_Scale)
@@ -114,6 +128,8 @@ TEST(alien_test, test_exceptions)
   ASSERT_THROW(Alien a1({4, 7}, {3, 4}, -40, 180, 6), std::invalid_argument);
   ASSERT_THROW(Alien a1({4, 7}, {3, 4}, 40, -180, 6), std::invalid_argument);
   ASSERT_THROW(Alien a1({4, 7}, {3, 4}, 40, 180, -6), std::invalid_argument);
+  ASSERT_THROW(Alien a1({4, 7}, {-3, 4}, 40, 180, 6), std::invalid_argument);
+  ASSERT_THROW(Alien a1({4, 7}, {3, -4}, 40, 180, 6), std::invalid_argument);
   ASSERT_THROW(a2.SetAmmo(-3), std::invalid_argument);
   ASSERT_THROW(a2.Scale(-4.0);, std::invalid_argument);
 }

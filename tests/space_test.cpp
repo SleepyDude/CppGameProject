@@ -18,18 +18,25 @@ TEST(space_test, test_constructor)
 TEST(space_test, test_add)
 {
   // Тест на добавление сущностей.
-  Space s1;
-  Gun g1, g2, g3, g4;
-  Obstacle o1, o2, o3;
+  try
+  {
+    Space s1;
+    Gun g1, g2, g3, g4;
+    Obstacle o1, o2, o3;
 
-  s1.Add(&g1);
-  EXPECT_EQ(s1.List().size(), 1);
-  s1.Add(&o1);
-  s1.Add(&g2);
-  s1.Add(&o2);
-  s1.Add(&g3);
-  s1.Add(&o3);
-  s1.Add(&g4);
-  EXPECT_EQ(s1.List().size(), 7);
-  s1.Update();
+    s1.Add(&g1);
+    EXPECT_EQ(s1.List().size(), 1);
+    s1.Add(&o1);
+    s1.Add(&g2);
+    s1.Add(&o2);
+    s1.Add(&g3);
+    s1.Add(&o3);
+    s1.Add(&g4);
+    EXPECT_EQ(s1.List().size(), 7);
+    s1.Update();
+  }
+  catch (std::invalid_argument const & ex)
+  {
+    std::cerr << ex.what();
+  }
 }
