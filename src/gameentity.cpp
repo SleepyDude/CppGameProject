@@ -2,11 +2,21 @@
 
 GameEntity::GameEntity(Point2D const & pos, float xDim, float yDim)
   : m_box(pos.x(), pos.y(), pos.x() + xDim, pos.y() + yDim)
-{}
+{
+  if (xDim <= 0 || yDim <= 0)
+  {
+    throw std::invalid_argument("dimension must be positive");
+  }
+}
 
 GameEntity::GameEntity(float xPos, float yPos, float xDim, float yDim)
   : m_box(xPos, yPos, xPos + xDim, yPos + yDim)
-{}
+{
+  if (xDim <= 0 || yDim <= 0)
+  {
+    throw std::invalid_argument("dimension must be positive");
+  }
+}
 
 // Методы для получения значений положения и габаритов
 Point2D const & GameEntity::position() const { return m_box.boxMin(); }
@@ -24,5 +34,9 @@ void GameEntity::Move(Point2D const & offset)
 
 void GameEntity::Scale(float factor)
 {
+  if (factor <= 0)
+  {
+    throw std::invalid_argument("scale factor must be positive");
+  }
   m_box.SetMax(m_box.boxMin() + ( m_box.boxMax() - m_box.boxMin() ) * factor);
 }

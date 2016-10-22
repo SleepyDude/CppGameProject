@@ -2,7 +2,12 @@
 
 Ray2D::Ray2D(Point2D const & origin, Point2D const & direction)
   : m_origin(origin), m_direction(direction)
-{}
+{
+  if (fabs(direction.x()) < kEps && fabs(direction.y()) < kEps)
+  {
+    throw std::invalid_argument("zero direction");
+  }
+}
 
 Ray2D::Ray2D(Ray2D const & obj)
   : m_origin(obj.m_origin), m_direction(obj.m_direction)
@@ -10,7 +15,12 @@ Ray2D::Ray2D(Ray2D const & obj)
 
 Ray2D::Ray2D(float f1, float f2, float f3, float f4)
   : m_origin(f1, f2), m_direction(f3, f4)
-{}
+{
+  if (fabs(f3) < kEps && fabs(f4) < kEps)
+  {
+    throw std::invalid_argument("zero direction");
+  }
+}
 
 Ray2D::Ray2D(Ray2D && obj)
 {
@@ -60,7 +70,7 @@ Point2D Ray2D::operator [] (unsigned int index) const
 bool Ray2D::Intersect(Point2D a, Point2D b)
 {
   Matrix m, m1, m2;
-  float hyp = sqrt( m_direction.x()*m_direction.x() + m_direction.y()*m_direction.y());
+  float hyp = sqrt(m_direction.x() * m_direction.x() + m_direction.y() * m_direction.y());
   float cos = m_direction.x() / hyp;
   float sin = m_direction.y() / hyp;
 
@@ -84,8 +94,8 @@ bool Ray2D::Intersect(Point2D a, Point2D b)
   float D1 = m1.Determinant();
   float D2 = m2.Determinant();
 
-  float T1 = D1/D;
-  float T2 = D2/D;
+  float T1 = D1 / D;
+  float T2 = D2 / D;
 
   if( T2 >= 0 && ( T1 >= 0 && T1 <= 1 ))
     return true;
@@ -109,4 +119,11 @@ void Ray2D::Normalization()
 }
 // Cеттеры
 void Ray2D::SetOrigin(Point2D const & p) { m_origin = p; }
-void Ray2D::SetDirection(Point2D const & p) { m_direction = p; }
+void Ray2D::SetDirection(Point2D const & p)
+{
+  if (p.x() == 0 && p.y() == 0)
+  {
+    throw std::invalid_argument("zero direction");
+  }
+  m_direction = p;
+}

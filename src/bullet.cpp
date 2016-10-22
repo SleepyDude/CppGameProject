@@ -2,11 +2,21 @@
 
 Bullet::Bullet(float damage, float velocity, Point2D direction)
   : m_damage(damage), m_velocity(velocity), m_ray(Box().boxMid(), direction)
-{}
+{
+  if (damage <= 0 || velocity <= 0)
+  {
+    throw std::invalid_argument("damage and velocity must be positive");
+  }
+}
 
 Bullet::Bullet(Point2D const & position, Point2D const & dimension, float damage, float velocity, Point2D direction)
   : GameEntity(position.x(), position.y(), dimension.x(), dimension.y()), m_damage(damage), m_velocity(velocity), m_ray(Box().boxMid(), direction)
-{}
+{
+  if (damage <= 0 || velocity <= 0)
+  {
+    throw std::invalid_argument("damage and velocity must be positive");
+  }
+}
 
 // Оператор логического равенства.
 bool Bullet::operator == (Bullet const & obj) const
@@ -20,8 +30,22 @@ float const & Bullet::velocity() const { return m_velocity; }
 Point2D Bullet::direction() const { return m_ray.direction(); }
 
 // Методы установки значений
-void Bullet::SetDamage(float damage) { m_damage = damage; }
-void Bullet::SetVelocity(float velocity) { m_velocity = velocity; }
+void Bullet::SetDamage(float damage)
+{
+  if (damage <= 0)
+  {
+    throw std::invalid_argument("damage must be positive");
+  }
+  m_damage = damage;
+}
+void Bullet::SetVelocity(float velocity)
+{
+  if (velocity <= 0)
+  {
+    throw std::invalid_argument("velocity must be positive");
+  }
+  m_velocity = velocity;
+}
 void Bullet::SetDirection(Point2D direction) { m_ray.SetDirection(direction); }
 
 // Метод смещения пули в заданном направлении

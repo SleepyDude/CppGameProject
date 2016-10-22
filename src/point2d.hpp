@@ -114,9 +114,11 @@ public:
   // Деление на число.
   Point2D operator / (float scale) const
   {
-    //обработано деление на 0
-    if ( scale == 0 ) { return { 0.0f, 0.0f }; }
-    return { m_x / scale, m_y / scale };
+  if (fabs(scale) < kEps)
+  {
+    throw std::invalid_argument("Division by zero!");
+  }
+  return { m_x / scale, m_y / scale };
   }
 
   Point2D & operator += (Point2D const & obj)
@@ -142,18 +144,13 @@ public:
 
   Point2D & operator /= (float scale)
   {
-    //обработано деление на 0
-    if ( scale == 0 )
-    {
-      m_x = 0.0f;
-      m_y = 0.0f;
-    }
-    else
-    {
-      m_x /= scale;
-      m_y /= scale;
-    }
-    return *this;
+  if (fabs(scale) < kEps)
+  {
+    throw std::invalid_argument("Division by zero!");
+  }
+  m_x /= scale;
+  m_y /= scale;
+  return *this;
   }
 
   // Переопределение оператора [].
