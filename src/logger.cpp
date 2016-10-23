@@ -1,6 +1,5 @@
 #include "logger.h"
 
-Logger::Logger()
-{
-
-}
+Logger::Logger(std::ostream & os)
+  :m_os(os)
+{}

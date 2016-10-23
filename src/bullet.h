@@ -33,3 +33,5 @@ private:
   float m_damage = 1.0f, m_velocity = 1.0f;
   Ray2D m_ray = { Box().boxMid().x(), Box().boxMid().y(), 0.0f, 1.0f };
 };
+
+std::ostream & operator << (std::ostream & os, Bullet const & obj);

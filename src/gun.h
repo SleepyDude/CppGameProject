@@ -40,3 +40,5 @@ private:
   float m_rate = 1.0f , m_hp = 100.0f;
   Holder m_holder;
 };
+
+std::ostream & operator << (std::ostream & os, Gun const & obj);

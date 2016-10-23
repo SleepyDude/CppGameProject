@@ -48,3 +48,5 @@ public:
 private:
   Point2D m_origin = { 0.0f, 0.0f }, m_direction = { 0.0f, 1.0f };
 };
+
+std::ostream & operator << (std::ostream & os, Ray2D const & obj);

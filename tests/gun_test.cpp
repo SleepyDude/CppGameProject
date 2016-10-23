@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "gun.h"
+#include "logger.h"
 
 TEST(gun_test, test_construction)
 {

@@ -1,5 +1,6 @@
 #pragma once
 #include <functional>
+#include <ostream>
 
 class Holder
 {
@@ -13,3 +14,5 @@ public:
 private:
   unsigned int m_ammo = 20;
 };
+
+std::ostream & operator << (std::ostream & os, Holder const & obj);

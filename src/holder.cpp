@@ -29,3 +29,9 @@ Holder Holder::operator -- (int)
   }
   return temp;
 }
+
+std::ostream & operator << (std::ostream & os, Holder const & obj)
+{
+  os << "**Holder** Ammo = " << obj.ammo() << "\n";
+  return os;
+}

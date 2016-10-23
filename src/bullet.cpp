@@ -58,3 +58,10 @@ void Bullet::Move()
 
 void Bullet::Update()
 {}
+
+std::ostream & operator << (std::ostream & os, Bullet const & obj)
+{
+  os << "**Bullet** Position = {" << obj.position().x() << " " << obj.position().y() << "} " << "Gabarites = {" << obj.xDim() << " " << obj.yDim() << "} " << \
+  " Direction = " << obj.direction() << " Damage = " << obj.damage() << " Velocity = " << obj.velocity() << "\n";
+  return os;
+}
