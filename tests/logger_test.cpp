@@ -60,10 +60,17 @@ TEST(logger_test, test_box)
 
 TEST(logger_test, test_list)
 {
-  Logger log;
-  Gun g1;
-  Gun g2(20,30);
-  Gun g3({4, 7}, {3, 4}, 40, 180);
-  std::list<Gun> gunList {g1, g2, g3};
-  log << gunList;
+  try
+  {
+    Logger log;
+    Gun g1;
+    Gun g2(20,30);
+    Gun g3({4, 7}, {3, 4}, 40, 180);
+    std::list<Gun> gunList {g1, g2, g3};
+    log << gunList;
+  }
+  catch (std::invalid_argument const & ex)
+  {
+    std::cerr << ex.what();
+  }
 }
