@@ -42,3 +42,5 @@ private:
   float m_rate = 1.0f , m_hp = 10.0f, m_velocity = 1.0f;
   Holder m_holder;
 };
+
+std::ostream & operator << (std::ostream & os, Alien const & obj);

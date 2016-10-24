@@ -127,3 +127,9 @@ void Ray2D::SetDirection(Point2D const & p)
   }
   m_direction = p;
 }
+
+std::ostream & operator << (std::ostream & os, Ray2D const & obj)
+{
+  os << "**Ray2D** Origin = " << obj.origin() << " Direction = " << obj.direction() << std::endl;
+  return os;
+}

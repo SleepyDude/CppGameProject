@@ -2,6 +2,7 @@
 #include "point2d.hpp"
 #include <sstream>
 #include <unordered_set>
+#include "logger.h"
 
 TEST(point2d_test, test_construction)
 {

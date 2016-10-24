@@ -74,3 +74,10 @@ void Alien::Shot()
 }
 void Alien::Update()
 {}
+
+std::ostream & operator << (std::ostream & os, Alien const & obj)
+{
+  os << "**Alien** Position = {" << obj.position().x() << " " << obj.position().y() << "} " << "Gabarites = {" << obj.xDim() << " " << obj.yDim() << "} " << "HP = " << obj.hp() << \
+  " Rate = " << obj.rate() << " Ammo = " << obj.ammo() << " Velocity = " << obj.velocity() << std::endl;
+  return os;
+}

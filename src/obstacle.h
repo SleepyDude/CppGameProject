@@ -25,3 +25,5 @@ public:
 private:
   float m_hp = 1000.0f;
 };
+
+std::ostream & operator << (std::ostream & os, Obstacle const & obj);

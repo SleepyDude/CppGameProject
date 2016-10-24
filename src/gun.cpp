@@ -63,3 +63,10 @@ void Gun::Update()
 {
   printf("I am gun\n");
 }
+
+std::ostream & operator << (std::ostream & os, Gun const & obj)
+{
+  os << "**Gun** Position = {" << obj.position().x() << " " << obj.position().y() << "} " << "Gabarites = {" << obj.xDim() << " " << obj.yDim() << "} " << "HP = " << obj.hp() << \
+  " Rate = " << obj.rate() << " Ammo = " << obj.ammo() << std::endl;
+  return os;
+}
