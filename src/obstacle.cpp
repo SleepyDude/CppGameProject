@@ -44,6 +44,6 @@ void Obstacle::Update()
 
 std::ostream & operator << (std::ostream & os, Obstacle const & obj)
 {
-  os << "**Obstacle** Position = {" << obj.position().x() << " " << obj.position().y() << "} " << "Gabarites = {" << obj.xDim() << " " << obj.yDim() << "} " << "HP = " << obj.hp() << "\n";
+  os << "**Obstacle** Position = {" << obj.position().x() << " " << obj.position().y() << "} " << "Gabarites = {" << obj.xDim() << " " << obj.yDim() << "} " << "HP = " << obj.hp() << std::endl;
   return os;
 }

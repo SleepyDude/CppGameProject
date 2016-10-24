@@ -117,6 +117,6 @@ Box2D Box2D::Validate()
 
 std::ostream & operator << (std::ostream & os, Box2D const & obj)
 {
-  os << "**Box2D** boxMin = " << obj.boxMin() << " boxMax = " << obj.boxMax() << " boxMid = " << obj.boxMid() << "\n";
+  os << "**Box2D** boxMin = " << obj.boxMin() << " boxMax = " << obj.boxMax() << " boxMid = " << obj.boxMid() << std::endl;
   return os;
 }

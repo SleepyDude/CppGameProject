@@ -32,6 +32,6 @@ Holder Holder::operator -- (int)
 
 std::ostream & operator << (std::ostream & os, Holder const & obj)
 {
-  os << "**Holder** Ammo = " << obj.ammo() << "\n";
+  os << "**Holder** Ammo = " << obj.ammo() << std::endl;
   return os;
 }
