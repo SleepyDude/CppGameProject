@@ -47,3 +47,10 @@ std::ostream & operator << (std::ostream & os, Obstacle const & obj)
   os << "**Obstacle** Position = {" << obj.position().x() << " " << obj.position().y() << "} " << "Gabarites = {" << obj.xDim() << " " << obj.yDim() << "} " << "HP = " << obj.hp() << std::endl;
   return os;
 }
+
+FactoryType Obstacle::GetType() { return FactoryType::ObstacleType; }
+
+std::unique_ptr<GameEntity> Obstacle::Create()
+{
+  return std::unique_ptr<GameEntity>(new Obstacle());
+}

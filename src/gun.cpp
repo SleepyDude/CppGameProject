@@ -64,9 +64,30 @@ void Gun::Update()
   printf("I am gun\n");
 }
 
+FactoryType Gun::GetType() { return FactoryType::GunType; }
+
+std::unique_ptr<GameEntity> Gun::Create()
+{
+  return std::unique_ptr<GameEntity>(new Gun());
+}
+
 std::ostream & operator << (std::ostream & os, Gun const & obj)
 {
   os << "**Gun** Position = {" << obj.position().x() << " " << obj.position().y() << "} " << "Gabarites = {" << obj.xDim() << " " << obj.yDim() << "} " << "HP = " << obj.hp() << \
   " Rate = " << obj.rate() << " Ammo = " << obj.ammo() << std::endl;
   return os;
+}
+
+// Наблюдатель
+void Gun::UpdateEvent(EventHandler const & event, Box2D box)
+{
+  event();
+  if(box % this->Box())
+  {
+    Logger::Instance() << "Intersect\n";
+  }
+  else
+  {
+    Logger::Instance() << "Not intersect\n";
+  }
 }

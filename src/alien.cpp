@@ -81,3 +81,10 @@ std::ostream & operator << (std::ostream & os, Alien const & obj)
   " Rate = " << obj.rate() << " Ammo = " << obj.ammo() << " Velocity = " << obj.velocity() << std::endl;
   return os;
 }
+
+FactoryType Alien::GetType() { return FactoryType::AlienType; }
+
+std::unique_ptr<GameEntity> Alien::Create()
+{
+  return std::unique_ptr<GameEntity>(new Alien());
+}
