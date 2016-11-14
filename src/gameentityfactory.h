@@ -6,14 +6,14 @@
 class GameEntityFactory
 {
 public:
-GameEntityFactory() = default;
+  GameEntityFactory() = default;
 
-bool Register(std::unique_ptr<GameEntity> && entity);
-void Unregister(std::unique_ptr<GameEntity> const & entity);
+  bool Register(std::unique_ptr<GameEntity> && entity);
+  void Unregister(std::unique_ptr<GameEntity> const & entity);
 
-std::unique_ptr<GameEntity> Create(FactoryType type);
+  std::unique_ptr<GameEntity> Create(FactoryType type);
 
 private:
-using Templates = std::unordered_map<int,std::unique_ptr<GameEntity>>;
-Templates m_templates;
+  using Templates = std::unordered_map<int,std::unique_ptr<GameEntity>>;
+  Templates m_templates;
 };
