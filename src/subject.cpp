@@ -11,7 +11,7 @@ void Subject::Detach(Observer* const & o)
 {
   auto it = std::find(m_observers.begin(), m_observers.end(), o);
   if (it != m_observers.end())
-    m_observers.remove(o);
+    m_observers.erase(it);
 }
 
 void Subject::Notify(EventHandler const & event, Box2D box)
