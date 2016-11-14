@@ -1,8 +1,9 @@
 #pragma once
 
 #include "gameentity.h"
+#include "subject.h"
 
-class Bullet: public GameEntity
+class Bullet: public GameEntity, public Subject
 {
 public:
   Bullet() = default;
@@ -29,6 +30,10 @@ public:
 
   void Update() override;
   ~Bullet() override = default;
+
+  // Методы для фабрики
+  FactoryType GetType() override;
+  std::unique_ptr<GameEntity> Create() override;
 private:
   float m_damage = 1.0f, m_velocity = 1.0f;
   Ray2D m_ray = { Box().boxMid().x(), Box().boxMid().y(), 0.0f, 1.0f };

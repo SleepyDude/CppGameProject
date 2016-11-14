@@ -37,6 +37,10 @@ public:
 
   void Update() override;
   ~Alien() override = default;
+
+  // Методы для фабрики
+  FactoryType GetType() override;
+  std::unique_ptr<GameEntity> Create() override;
 private:
   // Скорострельность и хилпоинты
   float m_rate = 1.0f , m_hp = 10.0f, m_velocity = 1.0f;

@@ -2,8 +2,9 @@
 
 #include "gameentity.h"
 #include "holder.h"
+#include "observer.h"
 
-class Gun : public GameEntity
+class Gun : public GameEntity, public Observer
 {
 public:
   Gun() = default;
@@ -35,6 +36,14 @@ public:
 
   void Update() override;
   ~Gun() override = default;
+
+  // Методы для фабрики
+  FactoryType GetType() override;
+  std::unique_ptr<GameEntity> Create() override;
+
+  // Наблюдатель
+  void UpdateEvent(EventHandler const &, Box2D box) override;
+
 private:
   // Скорострельность и хилпоинты
   float m_rate = 1.0f , m_hp = 100.0f;

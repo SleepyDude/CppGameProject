@@ -6,8 +6,11 @@
 class Logger
 {
 public:
-  Logger() = default;
-  Logger(std::ostream & os);
+  static Logger & Instance()
+  {
+    static Logger inst;
+    return inst;
+  }
 
   template<typename T, template<typename, typename...> class C, typename... Args>
   Logger & operator << (C<T, Args...> const & objs)
@@ -27,4 +30,11 @@ public:
 
 private:
   std::ostream & m_os = std::cout;
+  Logger() = default;
+  Logger(std::ostream & os);
+  virtual ~Logger() = default;
+  Logger(Logger const &) = delete;
+  Logger & operator = (Logger const &) = delete;
+  Logger(Logger &&) = delete;
+  Logger & operator = (Logger &&) = delete;
 };

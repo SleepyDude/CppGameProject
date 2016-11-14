@@ -65,3 +65,10 @@ std::ostream & operator << (std::ostream & os, Bullet const & obj)
   " Direction = " << obj.direction() << " Damage = " << obj.damage() << " Velocity = " << obj.velocity() << std::endl;
   return os;
 }
+
+FactoryType Bullet::GetType() { return FactoryType::BulletType; }
+
+std::unique_ptr<GameEntity> Bullet::Create()
+{
+  return std::unique_ptr<GameEntity>(new Bullet());
+}

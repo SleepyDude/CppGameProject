@@ -22,6 +22,10 @@ public:
 
   void Update() override;
   ~Obstacle() override = default;
+
+  // Методы для фабрики
+  FactoryType GetType() override;
+  std::unique_ptr<GameEntity> Create() override;
 private:
   float m_hp = 1000.0f;
 };
