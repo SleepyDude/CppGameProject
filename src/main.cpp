@@ -1,10 +1,13 @@
-#include <iostream>
+#include "main_window.hpp"
+#include <qdesktopwidget.h>
 
-using namespace std;
-
-int main()
+int main(int argc, char ** argv)
 {
-  cout << "Hello World!" << endl;
-  return 0;
+  QApplication a(argc, argv);
+  MainWindow mw;
+  mw.resize(200,200);
+  // move to screen center
+  mw.move(QApplication::desktop()->screen()->rect().center() - mw.rect().center());
+  mw.show();
+  return a.exec();
 }
-
