@@ -11,32 +11,32 @@ MainWindow::MainWindow()
 
 void MainWindow::createMenu()
 {
-  m_menuWidget = new QWidget(this);
-  setCentralWidget(m_menuWidget);
+  QWidget * menuWidget = new QWidget(this);
+  setCentralWidget(menuWidget);
   QPushButton * button1 = new QPushButton("New game");
 
-  m_settimgsButton = new QPushButton("Settings", this);
-  connect(m_settimgsButton, SIGNAL(clicked()), this, SLOT( createSettings() ));
+  QPushButton * settingsButton = new QPushButton("Settings", this);
+  connect(settingsButton, SIGNAL(clicked()), this, SLOT( createSettings() ));
 
-  m_ExitButton = new QPushButton("Exit");
-  connect(m_ExitButton, SIGNAL(clicked()), QApplication::instance(), SLOT( quit() ));
+  QPushButton * exitButton = new QPushButton("Exit");
+  connect(exitButton, SIGNAL(clicked()), QApplication::instance(), SLOT( quit() ));
 
-  QVBoxLayout * verticalGroupBox = new QVBoxLayout(m_menuWidget);
+  QVBoxLayout * verticalGroupBox = new QVBoxLayout(menuWidget);
   verticalGroupBox->addWidget(button1);
-  verticalGroupBox->addWidget(m_settimgsButton);
-  verticalGroupBox->addWidget(m_ExitButton);
+  verticalGroupBox->addWidget(settingsButton);
+  verticalGroupBox->addWidget(exitButton);
 }
 
 void MainWindow::createSettings()
 {
-  m_settingsWidget = new QWidget(this);
-  setCentralWidget(m_settingsWidget);
+  QWidget * settingsWidget = new QWidget(this);
+  setCentralWidget(settingsWidget);
   QTabWidget * tab = new QTabWidget(this);
-  QVBoxLayout * newLayout = new QVBoxLayout(m_settingsWidget);
+  QVBoxLayout * newLayout = new QVBoxLayout(settingsWidget);
   newLayout->addWidget(tab);
-  m_toMenuButton = new QPushButton("Menu");
-  newLayout->addWidget(m_toMenuButton);
-  connect(m_toMenuButton, SIGNAL(clicked()), this, SLOT( createMenu() ));
+  QPushButton * toMenuButton = new QPushButton("Menu");
+  newLayout->addWidget(toMenuButton);
+  connect(toMenuButton, SIGNAL(clicked()), this, SLOT( createMenu() ));
 
   QWidget * alienWidget = new QWidget(this);
 
