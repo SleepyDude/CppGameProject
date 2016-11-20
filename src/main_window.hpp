@@ -8,6 +8,9 @@
 #include <QTabWidget>
 #include <QSpinBox>
 #include <QGridLayout>
+#include <QTimer>
+#include <QOpenGLWidget>
+#include "gl_widget.h"
 
 class MainWindow : public QMainWindow
 {
@@ -17,6 +20,9 @@ public:
   MainWindow();
 
 private slots:
+  void createGame();
   void createSettings();
   void createMenu();
+private:
+  QOpenGLWidget * m_glWidget = nullptr;
 };
