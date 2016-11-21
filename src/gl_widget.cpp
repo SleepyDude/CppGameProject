@@ -105,7 +105,7 @@ void GLWidget::Render()
 {
   for(auto it = m_stars.begin(); it != m_stars.end(); ++it)
   {
-    int size = (*it)->getSize() * sin( ((*it)->getTime1() - m_timeStar.elapsed()) / (*it)->getTime2());
+    int size = (*it)->getSize() * sin( ((*it)->getTimeStart() - m_timeStar.elapsed()) / (*it)->getTimePeriod());
     m_texturedRect->Render((*it)->getTexture(), QVector2D((*it)->getXScale() * m_screenSize.width(),\
                            (*it)->getYScale() * m_screenSize.height()), QSize(size, size), m_screenSize);
   }

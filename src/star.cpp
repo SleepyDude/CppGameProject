@@ -23,14 +23,14 @@ int const & Star::getSize() const
   return m_size;
 }
 
-int const & Star::getTime1() const
+float const & Star::getTimePeriod() const
 {
-  return m_time1;
+  return m_timePeriod;
 }
 
-float const & Star::getTime2() const
+int const & Star::getTimeStart() const
 {
-  return m_time2;
+  return m_timeStart;
 }
 
 QOpenGLTexture * const & Star::getTexture() const
