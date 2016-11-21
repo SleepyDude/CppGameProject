@@ -13,7 +13,8 @@ void MainWindow::createMenu()
 {
   QWidget * menuWidget = new QWidget(this);
   setCentralWidget(menuWidget);
-  QPushButton * button1 = new QPushButton("New game");
+  QPushButton * startButton = new QPushButton("New game");
+  connect(startButton, SIGNAL(clicked()), this, SLOT( createGame() ));
 
   QPushButton * settingsButton = new QPushButton("Settings", this);
   connect(settingsButton, SIGNAL(clicked()), this, SLOT( createSettings() ));
@@ -22,7 +23,7 @@ void MainWindow::createMenu()
   connect(exitButton, SIGNAL(clicked()), QApplication::instance(), SLOT( quit() ));
 
   QVBoxLayout * verticalGroupBox = new QVBoxLayout(menuWidget);
-  verticalGroupBox->addWidget(button1);
+  verticalGroupBox->addWidget(startButton);
   verticalGroupBox->addWidget(settingsButton);
   verticalGroupBox->addWidget(exitButton);
 }
@@ -67,4 +68,14 @@ void MainWindow::createSettings()
   gunLayout->addWidget(gunRate, 1, 1);
 
   tab->addTab(gunWidget, "Gun");
+}
+
+void MainWindow::createGame()
+{
+  m_glWidget = new GLWidget(this, qRgb(20, 20, 50));
+  QTimer * timer = new QTimer(this);
+  timer->setInterval(10);
+  setCentralWidget(m_glWidget);
+  connect(timer, &QTimer::timeout, m_glWidget, static_cast<QWidgetVoidSlot>(&QWidget::update));
+  timer->start();
 }
