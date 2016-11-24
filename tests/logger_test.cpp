@@ -53,6 +53,7 @@ TEST(logger_test, test_box)
 
 TEST(logger_test, test_list)
 {
+  Logger::Instance().FileModeOn();
   try
   {
     Gun g1;

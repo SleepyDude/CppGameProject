@@ -21,8 +21,14 @@ public:
 
 private slots:
   void createGame();
-  void createSettings();
   void createMenu();
+  void WriteSettings();
+  void createSettings();
+
 private:
   QOpenGLWidget * m_glWidget = nullptr;
+  QSpinBox * m_alienHP = nullptr;
+  QSpinBox * m_alienVelocity = nullptr;
+  QSpinBox * m_gunHP = nullptr;
+  QSpinBox * m_gunRate = nullptr;
 };
