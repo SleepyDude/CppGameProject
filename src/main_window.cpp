@@ -6,11 +6,15 @@ MainWindow::MainWindow()
 {
   setWindowTitle("Space Invaders");
   setFocusPolicy(Qt::StrongFocus);
-  MainWindow::createMenu();
+  createMenu();
 }
 
 void MainWindow::createMenu()
 {
+  delete m_alienHP;
+  delete m_alienVelocity;
+  delete m_gunHP;
+  delete m_gunRate;
   QWidget * menuWidget = new QWidget(this);
   setCentralWidget(menuWidget);
   QPushButton * startButton = new QPushButton("New game");
@@ -35,37 +39,40 @@ void MainWindow::createSettings()
   QTabWidget * tab = new QTabWidget(this);
   QVBoxLayout * newLayout = new QVBoxLayout(settingsWidget);
   newLayout->addWidget(tab);
+  QPushButton * saveButton = new QPushButton("Save");
+  newLayout->addWidget(saveButton);
+  connect(saveButton, SIGNAL(clicked()), this, SLOT( WriteSettings() ));
   QPushButton * toMenuButton = new QPushButton("Menu");
   newLayout->addWidget(toMenuButton);
   connect(toMenuButton, SIGNAL(clicked()), this, SLOT( createMenu() ));
 
   QWidget * alienWidget = new QWidget(this);
 
-  QSpinBox * alienHP = new QSpinBox(this);
-  QSpinBox * alienVelocity = new QSpinBox(this);
+  m_alienHP = new QSpinBox(this);
+  m_alienVelocity = new QSpinBox(this);
   QLabel * alienHPLable = new QLabel("HP", this);
   QLabel * alienVelocityLable = new QLabel("Velocity", this);
 
   QGridLayout * alienLayout = new QGridLayout(alienWidget);
   alienLayout->addWidget(alienHPLable, 0, 0);
-  alienLayout->addWidget(alienHP, 0, 1);
+  alienLayout->addWidget(m_alienHP, 0, 1);
   alienLayout->addWidget(alienVelocityLable, 1, 0);
-  alienLayout->addWidget(alienVelocity, 1, 1);
+  alienLayout->addWidget(m_alienVelocity, 1, 1);
 
   tab->addTab(alienWidget,"Alien");
 
   QWidget * gunWidget = new QWidget(this);
 
-  QSpinBox * gunHP = new QSpinBox(this);
-  QSpinBox * gunRate = new QSpinBox(this);
+  m_gunHP = new QSpinBox(this);
+  m_gunRate = new QSpinBox(this);
   QLabel * gunHPLable = new QLabel("HP", this);
   QLabel * gunRateLable = new QLabel("Rate", this);
 
   QGridLayout * gunLayout = new QGridLayout(gunWidget);
   gunLayout->addWidget(gunHPLable, 0, 0);
-  gunLayout->addWidget(gunHP, 0, 1);
+  gunLayout->addWidget(m_gunHP, 0, 1);
   gunLayout->addWidget(gunRateLable, 1, 0);
-  gunLayout->addWidget(gunRate, 1, 1);
+  gunLayout->addWidget(m_gunRate, 1, 1);
 
   tab->addTab(gunWidget, "Gun");
 }
@@ -78,4 +85,28 @@ void MainWindow::createGame()
   setCentralWidget(m_glWidget);
   connect(timer, &QTimer::timeout, m_glWidget, static_cast<QWidgetVoidSlot>(&QWidget::update));
   timer->start();
+}
+
+void MainWindow::WriteSettings()
+{
+  QVariantMap settings;
+  QJsonObject alien;
+  QJsonObject gun;
+  alien["alienHP"] = m_alienHP->value();
+  alien["alienVelocity"] = m_alienVelocity->value();
+
+  gun["gunHP"] = m_gunHP->value();
+  gun["gunRate"] = m_gunRate->value();;
+  settings["alien"] = alien;
+  settings["gun"] = gun;
+  QJsonDocument saveDoc(QJsonObject::fromVariantMap(settings));
+  QString fileName("settings.json");
+  if (!fileName.isEmpty())
+  {
+    QFile json(fileName);
+    if(json.open(QIODevice::WriteOnly))
+    {
+       json.write(saveDoc.toJson());
+    }
+  }
 }

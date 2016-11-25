@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <fstream>
 
 class Logger
 {
@@ -15,24 +16,48 @@ public:
   template<typename T, template<typename, typename...> class C, typename... Args>
   Logger & operator << (C<T, Args...> const & objs)
   {
-    m_os << "**Container**\n";
-    for (auto const & obj : objs)
-      m_os << " " << obj;
+    if (m_logfile.is_open() && m_fileMode)
+    {
+      m_logfile << "**Container**\n";
+      for (auto const & obj : objs)
+      {
+        m_logfile << " " << obj;
+      }
+    }
+    if (m_terminalMode)
+    {
+      m_os << "**Container**\n";
+      for (auto const & obj : objs)
+      {
+        m_os << " " << obj;
+      }
+    }
     return *this;
   }
 
   template <typename T>
   Logger & operator << (T const & obj)
   {
-    m_os << obj;
+    if (m_terminalMode)
+      m_os << obj;
+    if (m_logfile.is_open() && m_fileMode)
+      m_logfile << obj;
     return *this;
   }
 
+  void TerminalModeOn();
+  void TerminalModeOff();
+  void FileModeOn();
+  void FileModeOff();
+
 private:
+  bool m_terminalMode = true;
+  bool m_fileMode = false;
   std::ostream & m_os = std::cout;
-  Logger() = default;
+  std::ofstream m_logfile;
+  Logger();
   Logger(std::ostream & os);
-  virtual ~Logger() = default;
+  virtual ~Logger();
   Logger(Logger const &) = delete;
   Logger & operator = (Logger const &) = delete;
   Logger(Logger &&) = delete;
