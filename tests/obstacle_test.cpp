@@ -54,7 +54,7 @@ TEST(obstacle_test, test_Scale)
   {
     Obstacle o1;
     float f1 = 3.0f;
-    o1.Scale(f1);
+    o1.Scale(f1, f1);
     Obstacle o2({0, 0}, {3, 3}, 1000);
     EXPECT_EQ(o2, o1);
   }

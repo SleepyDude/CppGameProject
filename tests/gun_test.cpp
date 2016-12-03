@@ -75,7 +75,7 @@ TEST(gun_test, test_Scale)
   {
     Gun g1;
     float f1 = 3.0f;
-    g1.Scale(f1);
+    g1.Scale(f1, f1);
     Gun g2({0, 0}, {3, 3}, 1, 100);
     EXPECT_EQ(g2, g1);
   }

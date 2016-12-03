@@ -5,7 +5,7 @@ typedef void (QWidget::*QWidgetVoidSlot)();
 MainWindow::MainWindow()
 {
   setWindowTitle("Space Invaders");
-  setFocusPolicy(Qt::StrongFocus);
+  //setFocusPolicy(Qt::StrongFocus);
   createMenu();
 }
 
@@ -83,30 +83,36 @@ void MainWindow::createGame()
   QTimer * timer = new QTimer(this);
   timer->setInterval(10);
   setCentralWidget(m_glWidget);
+  resize(800,600);
+  this->move(QApplication::desktop()->availableGeometry().center() - this->rect().center());
   connect(timer, &QTimer::timeout, m_glWidget, static_cast<QWidgetVoidSlot>(&QWidget::update));
   timer->start();
+  m_glWidget->setFocus();
 }
 
 void MainWindow::WriteSettings()
 {
-  QVariantMap settings;
-  QJsonObject alien;
-  QJsonObject gun;
-  alien["alienHP"] = m_alienHP->value();
-  alien["alienVelocity"] = m_alienVelocity->value();
-
-  gun["gunHP"] = m_gunHP->value();
-  gun["gunRate"] = m_gunRate->value();;
-  settings["alien"] = alien;
-  settings["gun"] = gun;
-  QJsonDocument saveDoc(QJsonObject::fromVariantMap(settings));
-  QString fileName("settings.json");
-  if (!fileName.isEmpty())
+  Json::Value settings;
+  Json::Value resolutions(Json::arrayValue);
+  resolutions.append(Json::Value("800x600"));
+  resolutions.append(Json::Value("1024x768"));
+  resolutions.append(Json::Value("1280x1024"));
+  auto & root = settings["settings"];
+  root["resolution"] = resolutions;
+  root["aliensCount"] = 100;
+  root["bulletsCount"] = 200;
+  root["entities"]["gun"]["health"] = m_gunHP->value();
+  root["entities"]["alien"]["health"] = m_alienHP->value();
+  root["entities"]["obstacle"]["health"] = 15;
+  root["entities"]["gun"]["rate"] = m_gunHP->value();
+  root["entities"]["alien"]["velocity"] = m_alienVelocity->value();
+  std::ofstream settingsFile;
+  settingsFile.open("settings.json");
+  if (settingsFile.is_open())
   {
-    QFile json(fileName);
-    if(json.open(QIODevice::WriteOnly))
-    {
-       json.write(saveDoc.toJson());
-    }
+    Json::StyledWriter styledWriter;
+    settingsFile << styledWriter.write(settings);
+    settingsFile.close();
   }
 }
+

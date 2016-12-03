@@ -8,9 +8,9 @@ TEST(space_test, test_constructor)
 {
   // Тест на создание объекта по умолчанию.
   Space s1;
-  Point2D pt_1 = { -1, -1 };
-  EXPECT_EQ(s1.xDim(), 21.0f);
-  EXPECT_EQ(s1.yDim(), 51.0f);
+  Point2D pt_1;
+  EXPECT_EQ(s1.xDim(), 800.0f);
+  EXPECT_EQ(s1.yDim(), 600.0f);
   EXPECT_EQ(s1.position(), pt_1);
   EXPECT_EQ(s1.List().size(), 0);
 }

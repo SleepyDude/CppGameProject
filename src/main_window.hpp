@@ -12,6 +12,9 @@
 #include <QOpenGLWidget>
 #include "gl_widget.h"
 
+#include <json/json.h>
+#include <fstream>
+
 class MainWindow : public QMainWindow
 {
   Q_OBJECT

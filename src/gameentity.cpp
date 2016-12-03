@@ -32,11 +32,22 @@ void GameEntity::Move(Point2D const & offset)
   m_box.Shift(offset);
 }
 
-void GameEntity::Scale(float factor)
+void GameEntity::Scale(float factorW,float factorH)
 {
-  if (factor <= 0)
+  if (factorW <= 0 || factorH <= 0)
   {
     throw std::invalid_argument("scale factor must be positive");
   }
-  m_box.SetMax(m_box.boxMin() + ( m_box.boxMax() - m_box.boxMin() ) * factor);
+  Point2D dim = { xDim()*factorW, yDim()*factorH };
+  m_box.SetMax(m_box.boxMin() + dim);
+}
+
+void GameEntity::SetDimension(float width, float height)
+{
+  m_box.SetMax({width, height});
+}
+
+void GameEntity::SetPosition(float x, float y)
+{
+  m_box.SetPosition({x, y});
 }

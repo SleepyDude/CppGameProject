@@ -77,7 +77,7 @@ TEST(alien_test, test_Scale)
   {
     Alien a1;
     float f1 = 3.0f;
-    a1.Scale(f1);
+    a1.Scale(f1, f1);
     Alien a2({0, 0}, {3, 3}, 1, 10, 1);
     EXPECT_EQ(a2, a1);
   }
@@ -131,5 +131,5 @@ TEST(alien_test, test_exceptions)
   EXPECT_THROW(Alien a1({4, 7}, {-3, 4}, 40, 180, 6), std::invalid_argument);
   EXPECT_THROW(Alien a1({4, 7}, {3, -4}, 40, 180, 6), std::invalid_argument);
   EXPECT_THROW(a2.SetAmmo(-3), std::invalid_argument);
-  EXPECT_THROW(a2.Scale(-4.0);, std::invalid_argument);
+  EXPECT_THROW(a2.Scale(-4.0, 5.0);, std::invalid_argument);
 }

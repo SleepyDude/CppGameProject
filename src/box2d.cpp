@@ -120,3 +120,10 @@ std::ostream & operator << (std::ostream & os, Box2D const & obj)
   os << "**Box2D** boxMin = " << obj.boxMin() << " boxMax = " << obj.boxMax() << " boxMid = " << obj.boxMid() << std::endl;
   return os;
 }
+
+// Метод задания позиции
+void Box2D::SetPosition(Point2D const & point)
+{
+  m_boxMax = point + m_boxMax - m_boxMin;
+  m_boxMin = point;
+}

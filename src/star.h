@@ -13,6 +13,7 @@ public:
   int const & getTimeStart() const;
   float const & getTimePeriod() const;
   QOpenGLTexture * const & getTexture() const;
+  void Move(float offsetX, float offsetY);
 
 private:
   // random value from 0 to 1

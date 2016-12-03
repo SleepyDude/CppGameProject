@@ -81,7 +81,7 @@ TEST(bullet_test, test_Scale)
   {
     Bullet b1;
     float f1 = 3.0f;
-    b1.Scale(f1);
+    b1.Scale(f1, f1);
     Bullet b2({0, 0}, {3, 3}, 1, 1, { 0.0f, 1.0f });
     EXPECT_EQ(b2, b1);
   }

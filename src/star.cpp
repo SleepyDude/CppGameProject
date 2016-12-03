@@ -37,3 +37,21 @@ QOpenGLTexture * const & Star::getTexture() const
 {
   return m_texture;
 }
+
+void Star::Move(float offsetX, float offsetY)
+{
+  m_xScale += offsetX;
+  m_yScale += offsetY;
+
+  if (m_xScale < 0.01f)
+    m_xScale = 0.99f;
+
+  if (m_yScale < 0.01f)
+    m_yScale = 0.99f;
+
+  if (m_xScale > 1.0f)
+    m_xScale = 0.02f;
+
+  if (m_yScale > 1.0f)
+    m_yScale = 0.02f;
+}

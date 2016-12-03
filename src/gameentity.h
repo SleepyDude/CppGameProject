@@ -7,6 +7,7 @@
 #include "movable.h"
 #include "scalable.h"
 #include "logger.h"
+#include <chrono>
 
 enum FactoryType
 {
@@ -29,11 +30,15 @@ public:
   virtual void Update() = 0;
   // Методы перемещения и маштабирования
   virtual void Move(Point2D const & offset) override;
-  virtual void Scale(float factor) override;
+  virtual void Scale(float factorW,float factorH) override;
   // Методы для получения значений положения и габаритов
   Point2D const & position() const;
   float xDim() const;
   float yDim() const;
+
+  void SetDimension(float width, float height);
+  void SetPosition(float x, float y);
+
   Box2D const & Box() const;
   // Чистый виртуальный деструктор
   virtual ~GameEntity() = 0;
